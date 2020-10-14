@@ -10,7 +10,9 @@ Page({
   },
 
   async onLoad(options) {
+    await this.onGetOpenid()
     await this.getData();
+    await this.getExamination()
   },
 
   onReady: function () {},
@@ -67,7 +69,7 @@ Page({
     const that = this;
     // 选择图片
     wx.chooseImage({
-      count: 1,
+      count: 9,
       sizeType: ["compressed"],
       sourceType: ["album", "camera"],
       success: function (res) {
@@ -105,7 +107,8 @@ Page({
                   icon: "none",
                   title: "上传成功，感谢❤",
                 });
-                that.getData();
+                const start = that.data.sticker.length;
+                that.getData(start);
               });
           },
           fail: (e) => {
@@ -138,5 +141,27 @@ Page({
       current: 0,
       urls: [url],
     });
+  },
+
+  async getExamination(){
+    const result = await wx.cloud.callFunction({
+      name:"getExamination"
+    })
+    console.log(result);
+  },
+  
+  async onGetOpenid() {
+    // 调用云函数
+    const { result } = await wx.cloud.callFunction({
+      name: "login",
+      data: { userInfo: {} },
+    });
+    console.log(result);
+    let examination =result.data.examination;
+    if (examination < 4) {
+      wx.reLaunch({
+        url: '../init/init',
+      });
+    }
   },
 });

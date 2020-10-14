@@ -64,7 +64,7 @@ Page({
     }
     wx.cloud.callFunction({
       name:"login",
-      data:userInfo,
+      data:{userInfo},
     }).then(res=>{
       console.log('getUserInfo',res);
       this.setData({

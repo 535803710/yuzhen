@@ -1,0 +1,33 @@
+<l-capsule-bar hidden-capsule title="于贞club">
+	<view class="">
+		<view class="header" wx:if="{{!examination}}">请参加入站考试</view>
+		<view class="content">
+			<view class='buttun-wrapper' wx:for="{{examinationList}}" wx:key="{{index}}">
+				<view class='title'>{{item.index}}.{{item.question}}</view>
+				<l-radio-group
+				 none-checked="{{false}}"
+				 l-class="l-radio-group"
+				 bind:linchange="change"
+				 data-item="{{item}}"
+				 data-index="{{index}}"
+				 length="4"
+				>
+					<l-radio
+					 l-class="l-radio"
+					 wx:for="{{item.options}}"
+					 wx:for-item="option"
+					 wx:key="id"
+					 key="{{option.id}}"
+					>
+						{{option.text}}
+					</l-radio>
+				</l-radio-group>
+			</view>
+		</view>
+
+		<view class="btn">
+			<l-btn bind:tap="submit"> 我做完了 </l-btn>
+		</view>
+	</view>
+</l-capsule-bar>
+

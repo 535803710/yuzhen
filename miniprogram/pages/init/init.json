@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "l-radio-group":"/miniprogram_npm/lin-ui/radio-group/index",
+    "l-radio":"/miniprogram_npm/lin-ui/radio/index",
+    "l-btn":"/miniprogram_npm/lin-ui/button/index",
+    "l-capsule-bar":"/miniprogram_npm/lin-ui/capsule-bar/index"
+  },
+  "navigationBarTitleText":"入站考试",
+  "navigationStyle":"custom"
+  
+}

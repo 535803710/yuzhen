@@ -2,24 +2,23 @@
 
 .avatar-box {
   display: flex;
-  width: 750rpx;
   /* padding: 10rpx 0; */
   /* justify-content: space-between; */
   flex-wrap: wrap;
   overflow: auto;
-  padding: 2.5rpx;
+  padding: 2rpx;
 }
 
 .avatar-image-item{
-  width: 240rpx;
-  height: 240rpx;
+  width: 245rpx;
+  height: 245rpx;
   overflow: hidden;
+  margin: 2rpx;
 }
 .avatar-image {
-  width: 240rpx;
-  height: 240rpx;
+  width: 250rpx;
+  height: 250rpx;
   overflow: hidden;
-  margin: 5rpx;
 }
 
 .uploader {

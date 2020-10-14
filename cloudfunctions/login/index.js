@@ -27,6 +27,13 @@ exports.main = async (event, context) => {
     data: {},
     err: null,
   };
+  let userInfo = event.userInfo|| {}
+  // let login = true
+  // if(Object.keys(event).indexOf('login') > -1){
+  //   login = event.login
+  // }
+  // console.log(login);
+
   let res = "";
   // 可执行其他自定义逻辑
   // console.log 的内容可以在云开发云函数调用日志查看
@@ -39,30 +46,31 @@ exports.main = async (event, context) => {
       openid: wxContext.OPENID,
     })
     .get();
-  console.log("data", data);
   try {
+
     if (data.length === 0) {
       const params = {
         openid: wxContext.OPENID,
-        ...event,
+        ...userInfo,
         create_time: new Date(),
+        examination: '0',
         delete_time: null,
         update_time: null,
       };
       res = await user.add({
         data: params,
       });
-      returnRes.data = res;
+
+      returnRes.data = params;
     } else {
       res = await user.doc(data[0]._id).update({
         data: {
-          ...event,
+          ...userInfo,
           update_time: new Date(),
         },
       });
+      returnRes.data = data[0];
     }
-    console.log("res", res);
-    returnRes.data = res;
   } catch (error) {
     returnRes.err = error;
     returnRes.success = false;

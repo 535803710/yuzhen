@@ -13,7 +13,7 @@
 				<image
 				 class="avatar-image"
 				 src="{{item.file_id}}"
-				 mode="widthFix"
+				 mode="aspectFill"
 				 data-url="{{item.file_id}}"
 				 bind:tap="view"
 				 lazy-load="{{true}}"

@@ -18,7 +18,7 @@
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
+    "compileHotReLoad": true,
     "useMultiFrameRuntime": false,
     "useApiHook": true,
     "babelSetting": {
@@ -27,6 +27,7 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
+    "bundle": true,
     "useIsolateContext": true,
     "useCompilerModule": false,
     "userConfirmedUseCompilerModuleSwitch": true,
