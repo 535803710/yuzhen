@@ -24,6 +24,13 @@
   overflow: hidden;
 }
 
+.desc{
+  text-align: center;
+  color: #666;
+  font-size: 20rpx;
+  margin-bottom: 20rpx;
+}
+
 .uploader {
   display: flex;
   position: fixed;
@@ -31,7 +38,7 @@
   width: 70rpx;
   height: 70rpx;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.541);
+  background-color: rgb(255, 255, 255);
   justify-content: center;
   right: 40rpx;
   font-size: 26rpx;
@@ -46,13 +53,13 @@
 
 .swiper {
   width: 750rpx;
-  height: 400rpx;
+  height: 750rpx;
   overflow: hidden;
 }
 
 .swiper-item {
   width: 750rpx;
-  height: 400rpx;
+  height: 750rpx;
   overflow: hidden;
 }
 

@@ -8,7 +8,8 @@
 			<image src="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_JWxD1dUCuvJRf86f98f5a2481898e9ec63c990023812" mode="widthFix" />
 		</swiper-item>
 	</swiper>
-	<view class="title">/ 贞漂亮的表情包（标题暂定） /</view>
+	<view class="title">/ 贞漂亮的表情包 /</view>
+	<view class="desc">目前为内测版本,图片还在等待大家上传,希望土豆粉们能支持,并且遵守相关规定</view>
 	<l-loadmore show="{{isLoading || loadAll}}" type="{{loadAll?'end':'loading'}}">
 		<view slot="content" class="avatar-box">
 			<view class="avatar-image-item" wx:for="{{sticker}}" wx:key="index">

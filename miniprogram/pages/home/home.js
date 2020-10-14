@@ -10,7 +10,7 @@ Page({
     isLoading: false,
     sticker: [],
     imgLoading: true,
-    userInfo:""
+    userInfo: ""
   },
 
   async onLoad(options) {
@@ -19,11 +19,16 @@ Page({
     await this.getExamination();
   },
 
-  onReady: function () {},
+  onReady: function () { },
 
-  async onShow() {},
+  async onShow() { },
 
-  async getData(start = 0) {
+  async getData(start = 0, refersh = false) {
+    if (refersh) {
+      this.setData({
+        sticker: []
+      })
+    }
     this.setData({
       isLoading: true,
     });
@@ -52,8 +57,8 @@ Page({
       });
     }
   },
-  onHide: function () {},
-  onUnload: function () {},
+  onHide: function () { },
+  onUnload: function () { },
   onPullDownRefresh: function (e) {
     console.log(e);
   },
@@ -64,7 +69,7 @@ Page({
     }
   },
 
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
   demoTap() {
     wx.navigateTo({
       url: "../index/index",
@@ -75,7 +80,6 @@ Page({
     const that = this;
     // 选择图片
     let filePath = "";
-    let cloudPath = "";
     wx.chooseImage({
       count: 1,
       sizeType: ["compressed"],
@@ -88,59 +92,78 @@ Page({
         filePath = res.tempFilePaths[0];
         // 上传图片
         // const cloudPath = 'avatar/my-image' + filePath.match(/\.[^.]+?$/)[0]
-        cloudPath = "sticker/my-image_" + filePath.split(".")[2];
 
+        let timestamp = Date.parse(new Date());
+        timestamp = timestamp / 1000;
+        const cloudPath = "sticker/my-image_" + that.data.userInfo.openid + '_' + timestamp;
+        console.log('cloudPath', cloudPath);
         wx.getFileInfo({
           filePath,
           success: (res) => {
             console.log("getFileInfo", res);
-          },
-        });
-
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: (res) => {
-            console.log("[上传文件] 成功：", res);
-
-            app.globalData.fileID = res.fileID;
-            app.globalData.cloudPath = cloudPath;
-            app.globalData.imagePath = filePath;
-            wx.cloud
-              .callFunction({
-                name: "addSticker",
-                data: {
-                  fileID: res.fileID,
-                  cloudPath,
-                  filePath,
-                  type: ["内测"],
-                },
-              })
-              .then((res) => {
-                wx.showToast({
-                  icon: "none",
-                  title: "上传成功，感谢❤",
-                });
-                that.getData(0);
+            if(res.size>2048000){
+              wx.showToast({
+                title: '抱歉图片太大,限制2mb',
+                icon: 'none',
+                duration: 2000,
               });
+            }else{
+              wx.cloud.uploadFile({
+                cloudPath,
+                filePath,
+                success: (res) => {
+                  console.log("[上传文件] 成功：", res);
+      
+                  app.globalData.fileID = res.fileID;
+                  app.globalData.cloudPath = cloudPath;
+                  app.globalData.imagePath = filePath;
+                  wx.cloud
+                    .callFunction({
+                      name: "addSticker",
+                      data: {
+                        fileID: res.fileID,
+                        cloudPath,
+                        filePath,
+                        type: ["内测"],
+                      },
+                    })
+                    .then((res) => {
+                      wx.showToast({
+                        icon: "none",
+                        title: "上传成功，感谢❤",
+                      });
+      
+                      that.getData(0, true);
+                    });
+                },
+                fail: (e) => {
+                  console.error("[上传文件] 失败：", e);
+                  wx.showToast({
+                    icon: "none",
+                    title: "上传失败",
+                  });
+                },
+                complete: () => {
+                  wx.hideLoading();
+                },
+              });
+            }
           },
-          fail: (e) => {
-            console.error("[上传文件] 失败：", e);
+          fail:err=>{
             wx.showToast({
-              icon: "none",
-              title: "上传失败",
+              title: '上传失败',
+              duration: 2000,
             });
-          },
-          complete: () => {
-            wx.hideLoading();
-          },
+          }
         });
+
+
       },
       fail: (e) => {
         console.error(e);
       },
       complete: () => {
-        wx.hideLoading();
+        // wx.hideLoading();
       },
     });
 
@@ -180,7 +203,7 @@ Page({
     });
     console.log(result);
     this.setData({
-      userInfo:result.data
+      userInfo: result.data
     })
     let examination = result.data.examination;
     if (examination < 4) {
@@ -207,18 +230,18 @@ Page({
     });
   },
 
-  async delete(e){
-    const index = util.getDataSet(e,'index')
-    const item = util.getDataSet(e,'item')
+  async delete(e) {
+    const index = util.getDataSet(e, 'index')
+    const item = util.getDataSet(e, 'item')
     console.log(index);
-    const res =await wx.cloud.callFunction({
-      name:"updateSticker",
-      data:{
-        type:"delete",
-        id:item._id
+    const res = await wx.cloud.callFunction({
+      name: "updateSticker",
+      data: {
+        type: "delete",
+        id: item._id
       }
     })
-    if(res.errMsg === 'cloud.callFunction:ok'){
+    if (res.errMsg === 'cloud.callFunction:ok') {
       wx.showToast({
         title: '删除成功',
         icon: 'none',
@@ -227,7 +250,7 @@ Page({
       });
       const a = `sticker[${index}].delete`
       this.setData({
-        [a]:true
+        [a]: true
       })
     }
 
