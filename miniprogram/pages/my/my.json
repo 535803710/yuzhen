@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "j-btn":"/miniprogram_npm/lin-ui/button/index",
+    "j-avatar":"/miniprogram_npm/lin-ui/avatar/index",
+    "l-icon":"/miniprogram_npm/lin-ui/icon/index",
+    "l-list":"/miniprogram_npm/lin-ui/list/index",
+    "l-collapse": "/miniprogram_npm/lin-ui/collapse/index",
+    "l-collapse-item": "/miniprogram_npm/lin-ui/collapse-item/index",
+    "l-card":"/miniprogram_npm/lin-ui/card/index"
+  }
+}

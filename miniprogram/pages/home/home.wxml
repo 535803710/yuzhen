@@ -1,0 +1,46 @@
+<!-- index.wxml -->
+<view class="container">
+	<!-- <button type="primary" bindtap="demoTap">demo</button> -->
+	<swiper class="swiper">
+		<swiper-item class="swiper-item" item-id="">
+			<image src="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_JWxD1dUCuvJRf86f98f5a2481898e9ec63c990023812" mode="widthFix" />
+		</swiper-item>
+	</swiper>
+	<view class="title">/ 贞漂亮的表情包（标题暂定） /</view>
+	<l-loadmore show="{{isLoading || loadAll}}" type="{{loadAll?'end':'loading'}}">
+		<view slot="content" class="avatar-box">
+			<view class="avatar-image-item" wx:for="{{sticker}}" wx:key="{{index}}">
+				<image
+				 class="avatar-image"
+				 src="{{item.file_id}}"
+				 mode="widthFix"
+				 data-url="{{item.file_id}}"
+				 bind:tap="view"
+				 lazy-load="{{true}}"
+				/>
+			</view>
+		</view>
+	</l-loadmore>
+	<view class="uploader" bind:tap="showRule">
+		<j-icon name='add' size="68" />
+	</view>
+	<!-- 上传图片 -->
+	<!-- <view class="uploader" /> -->
+</view>
+<j-dialog
+ show="{{showRule}}"
+ type="confirm"
+ title="上传须知"
+ bind:linconfirm="doUpload"
+ confirm-text="我同意"
+>
+	<view>
+		<view>1. 不得上传任何有违国家法律法规的图片。</view>
+		<view>2. 不得上传具有色情内容的图片。</view>
+		<view>3. 不得上传内容低俗，格调不高的图片。</view>
+		<view>4. 不得上传具有色情诱导性内容的图片。</view>
+		<view>5. 所有图片仅供学习，不可作为商用。</view>
+		<view>如果您上传了这些内容，我们将一律予以删除，我们希望我们最珍贵的网友们，理解并监督我们。</view>
+	</view>
+</j-dialog>
+

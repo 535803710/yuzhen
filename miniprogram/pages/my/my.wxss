@@ -1,0 +1,30 @@
+.avatar{
+    margin-top: 50rpx;
+    padding: 30rpx 50rpx;
+    border-bottom: 1rpx solid rgb(226, 226, 226);
+}
+.avatar-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login{
+    display: flex;
+    justify-content: center;
+    height: 200rpx;
+    align-items: center;
+}
+
+.list{
+    margin-top: 50rpx;
+    padding:  0 50rpx;
+}
+
+.collapseTitle{
+    font-size: 26rpx !important;
+}
+
+.collapse-box{
+    margin-top: 50rpx;
+}

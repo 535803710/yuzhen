@@ -1,0 +1,56 @@
+<!-- pages/my/my.wxml -->
+<view>
+	<view class="avatar">
+		<view wx:if="{{login}}" class="avatar-box">
+			<j-avatar open-data="{{['userAvatarUrl','userNickName']}}" />
+			<l-icon name="right" size="30" />
+		</view>
+		<view wx:else class="login">
+			<j-btn open-type="getUserInfo" bind:getuserinfo="getUserInfo">登录</j-btn>
+		</view>
+	</view>
+
+	<view class="list">
+
+		<l-list
+		 title="版本号"
+		 icon="edit"
+		 right-desc="v0.0.1"
+		 is-link="{{false}}"
+		/>
+		<l-list
+		 title="作者"
+		 icon="user"
+		 right-desc="小蜗"
+		 is-link="{{false}}"
+		/>
+		<l-list
+		 title="联系作者"
+		 icon="phone"
+		 right-desc="yuzhenclub@163.com"
+		 is-link="{{false}}"
+		/>
+
+		<view class="collapse-box">
+			<l-collapse expand-item-id='{{showCollapse}}'>
+				<l-collapse-item l-title-class="collapseTitle" title="现有功能" item-id="0">
+					<view>1.图片上传</view>
+					<view>2.用户登录</view>
+					<view>3.图片预览</view>
+					<view>4.图片保存</view>
+					<view>❤ 如果你有什么好想法可以发邮件给作者 ❤</view>
+				</l-collapse-item>
+				<l-collapse-item l-title-class="collapseTitle" title="后续功能" item-id="1">
+					<view>1.多图上传</view>
+					<view>2.图片点赞</view>
+					<view>3.图片收藏</view>
+					<view>4.图片画廊</view>
+					<view>5.用户资料填写</view>
+					<view>❤ 如果你有什么好想法可以发邮件给作者 ❤</view>
+				</l-collapse-item>
+			</l-collapse>
+		</view>
+	</view>
+
+</view>
+
