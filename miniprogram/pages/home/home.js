@@ -2,17 +2,21 @@
 import { Util } from "../../util/util2";
 const app = getApp();
 const util = new Util();
+let imgLoadNum = 0;
+
 Page({
   data: {
     loadAll: false,
     isLoading: false,
     sticker: [],
+    imgLoading: true,
+    userInfo:""
   },
 
   async onLoad(options) {
-    await this.onGetOpenid()
+    await this.onGetOpenid();
     await this.getData();
-    await this.getExamination()
+    await this.getExamination();
   },
 
   onReady: function () {},
@@ -50,7 +54,9 @@ Page({
   },
   onHide: function () {},
   onUnload: function () {},
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function (e) {
+    console.log(e);
+  },
   onReachBottom() {
     const start = this.data.sticker.length;
     if (!this.data.loadAll) {
@@ -68,8 +74,10 @@ Page({
   doUpload() {
     const that = this;
     // 选择图片
+    let filePath = "";
+    let cloudPath = "";
     wx.chooseImage({
-      count: 9,
+      count: 1,
       sizeType: ["compressed"],
       sourceType: ["album", "camera"],
       success: function (res) {
@@ -77,12 +85,18 @@ Page({
           title: "上传中",
         });
 
-        const filePath = res.tempFilePaths[0];
-
+        filePath = res.tempFilePaths[0];
         // 上传图片
         // const cloudPath = 'avatar/my-image' + filePath.match(/\.[^.]+?$/)[0]
-        const cloudPath = "sticker/my-image_" + filePath.split(".")[2];
-        console.log("filePath", filePath);
+        cloudPath = "sticker/my-image_" + filePath.split(".")[2];
+
+        wx.getFileInfo({
+          filePath,
+          success: (res) => {
+            console.log("getFileInfo", res);
+          },
+        });
+
         wx.cloud.uploadFile({
           cloudPath,
           filePath,
@@ -99,7 +113,7 @@ Page({
                   fileID: res.fileID,
                   cloudPath,
                   filePath,
-                  type: ["测试"],
+                  type: ["内测"],
                 },
               })
               .then((res) => {
@@ -107,8 +121,7 @@ Page({
                   icon: "none",
                   title: "上传成功，感谢❤",
                 });
-                const start = that.data.sticker.length;
-                that.getData(start);
+                that.getData(0);
               });
           },
           fail: (e) => {
@@ -126,13 +139,22 @@ Page({
       fail: (e) => {
         console.error(e);
       },
+      complete: () => {
+        wx.hideLoading();
+      },
     });
+
+    console.log(filePath);
   },
 
   showRule(e) {
-    this.setData({
-      showRule: true,
-    });
+    if (this.data.readRule) {
+      this.doUpload();
+    } else {
+      this.setData({
+        showRule: true,
+      });
+    }
   },
 
   view(e) {
@@ -143,13 +165,13 @@ Page({
     });
   },
 
-  async getExamination(){
+  async getExamination() {
     const result = await wx.cloud.callFunction({
-      name:"getExamination"
-    })
+      name: "getExamination",
+    });
     console.log(result);
   },
-  
+
   async onGetOpenid() {
     // 调用云函数
     const { result } = await wx.cloud.callFunction({
@@ -157,11 +179,57 @@ Page({
       data: { userInfo: {} },
     });
     console.log(result);
-    let examination =result.data.examination;
+    this.setData({
+      userInfo:result.data
+    })
+    let examination = result.data.examination;
     if (examination < 4) {
       wx.reLaunch({
-        url: '../init/init',
+        url: "../init/init",
+      });
+    }
+
+  },
+
+  imgLoad() {
+    imgLoadNum += 1;
+    if (imgLoadNum > 7) {
+      this.setData({
+        imgLoading: false,
       });
     }
   },
+
+  readRule(e) {
+    console.log(e);
+    this.setData({
+      readRule: e.detail.checked,
+    });
+  },
+
+  async delete(e){
+    const index = util.getDataSet(e,'index')
+    const item = util.getDataSet(e,'item')
+    console.log(index);
+    const res =await wx.cloud.callFunction({
+      name:"updateSticker",
+      data:{
+        type:"delete",
+        id:item._id
+      }
+    })
+    if(res.errMsg === 'cloud.callFunction:ok'){
+      wx.showToast({
+        title: '删除成功',
+        icon: 'none',
+        duration: 1500,
+        mask: false,
+      });
+      const a = `sticker[${index}].delete`
+      this.setData({
+        [a]:true
+      })
+    }
+
+  }
 });

@@ -20,7 +20,7 @@ exports.main = async (event, context) => {
       create_time: false,
     }).where({
       delete_time:null
-    }).skip(start).limit(num).get()
+    }).orderBy('create_time', 'desc').skip(start).limit(num).get()
     console.log(data)
     if(data.length !== 12){
       res.loadAll = true

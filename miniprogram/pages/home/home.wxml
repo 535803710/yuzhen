@@ -1,4 +1,6 @@
 <!-- index.wxml -->
+<import src="home.skeleton.wxml" />
+<template is="skeleton" wx-if="{{imgLoading}}" />
 <view class="container">
 	<!-- <button type="primary" bindtap="demoTap">demo</button> -->
 	<swiper class="swiper">
@@ -9,7 +11,8 @@
 	<view class="title">/ 贞漂亮的表情包（标题暂定） /</view>
 	<l-loadmore show="{{isLoading || loadAll}}" type="{{loadAll?'end':'loading'}}">
 		<view slot="content" class="avatar-box">
-			<view class="avatar-image-item" wx:for="{{sticker}}" wx:key="{{index}}">
+			<view class="avatar-image-item" wx:for="{{sticker}}" wx:key="index">
+				<view wx:if="{{item.delete}}" class="deleteImg" />
 				<image
 				 class="avatar-image"
 				 src="{{item.file_id}}"
@@ -17,12 +20,22 @@
 				 data-url="{{item.file_id}}"
 				 bind:tap="view"
 				 lazy-load="{{true}}"
+				 bindload="imgLoad"
 				/>
+				<view
+				 class="delete"
+				 data-item="{{item}}"
+				 data-index='{{index}}'
+				 wx:if="{{userInfo.scope === 'admin'}}"
+				 bind:tap="delete"
+				>
+					<l-icon name="delete" color="#ffffff" />
+				</view>
 			</view>
 		</view>
 	</l-loadmore>
 	<view class="uploader" bind:tap="showRule">
-		<j-icon name='add' size="68" />
+		<l-icon name='add' size="68" />
 	</view>
 	<!-- 上传图片 -->
 	<!-- <view class="uploader" /> -->
@@ -39,8 +52,14 @@
 		<view>2. 不得上传具有色情内容的图片。</view>
 		<view>3. 不得上传内容低俗，格调不高的图片。</view>
 		<view>4. 不得上传具有色情诱导性内容的图片。</view>
-		<view>5. 所有图片仅供学习，不可作为商用。</view>
-		<view>如果您上传了这些内容，我们将一律予以删除，我们希望我们最珍贵的网友们，理解并监督我们。</view>
+		<view>5. 不得上传作为商用的图片。</view>
+		<view>如果您上传了这些内容，我们将一律予以删除，希望我们最珍贵的网友们，理解并监督我们。</view>
+		<view class="readRule">
+			<l-radio-group bind:linchange="readRule">
+				<l-radio key="1">不再提示</l-radio>
+			</l-radio-group>
+		</view>
 	</view>
+
 </j-dialog>
 

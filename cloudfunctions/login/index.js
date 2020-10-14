@@ -56,6 +56,7 @@ exports.main = async (event, context) => {
         examination: '0',
         delete_time: null,
         update_time: null,
+        scope:"user"
       };
       res = await user.add({
         data: params,
