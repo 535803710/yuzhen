@@ -173,7 +173,8 @@ Page({
           duration: 2000,
           mask: true,
         });
-
+        const eventChannel = this.getOpenerEventChannel()
+        eventChannel.emit('refersh', {data: true});
         setTimeout(() => {
           wx.navigateBack({
             delta: 1,
@@ -188,8 +189,9 @@ Page({
   async _upLoadImageToCloud(filePath) {
     let timestamp = Date.parse(new Date());
     timestamp = timestamp / 1000;
+    let random = Math.floor((Math.random()*1000)+1);
     const cloudPath =
-      "sticker/my-image_" + app.globalData.userInfo.openid + "_" + timestamp;
+      "sticker/my-image_" + app.globalData.userInfo.openid + "_" + timestamp + random;
     console.log(cloudPath);
     const res = await wx.cloud.uploadFile({
       filePath,

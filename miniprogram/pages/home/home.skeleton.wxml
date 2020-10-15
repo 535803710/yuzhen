@@ -16,84 +16,125 @@
 更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
 -->
 <template name="skeleton">
-  <view class="sk-container">
-    <view class="container">
-      <swiper class="swiper" current="0" autoplay="false">
-        <swiper-item class="swiper-item" item-id="true" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
-          <image mode="widthFix" style="height: 499.549px;" class="sk-image"></image>
-        </swiper-item>
-      </swiper>
-      <view class="title sk-transparent sk-text-34-0000-553 sk-text" style="background-position-x: 50%;">/ 贞漂亮的表情包 /</view>
-      <view class="desc sk-transparent sk-text-14-2857-258 sk-text" style="background-position-x: 50%;">目前为内测版本,图片还在等待大家上传,希望土豆粉们能支持,并且遵守相关规定</view>
-      <view is="miniprogram_npm/lin-ui/loadmore/index">
-        <view class="avatar-box">
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602678271" lazy-load="true" mode="aspectFill"></image>
-            <view class="delete" data-index="0" data-item="[object Object]">
-              <view is="miniprogram_npm/lin-ui/icon/index">
-                <view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;"></view>
-              </view>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602678264" lazy-load="true" mode="aspectFill"></image>
-            <view class="delete" data-index="1" data-item="[object Object]">
-              <view is="miniprogram_npm/lin-ui/icon/index">
-                <view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;"></view>
-              </view>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602678257" lazy-load="true" mode="aspectFill"></image>
-            <view class="delete" data-index="2" data-item="[object Object]">
-              <view is="miniprogram_npm/lin-ui/icon/index">
-                <view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;"></view>
-              </view>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602678253" lazy-load="true" mode="aspectFill"></image>
-            <view class="delete" data-index="3" data-item="[object Object]">
-              <view is="miniprogram_npm/lin-ui/icon/index">
-                <view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;"></view>
-              </view>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5fxw-pkEEbuWJQXTtMVpm_o_1602677972" lazy-load="true" mode="aspectFill"></image>
-            <view class="delete" data-index="4" data-item="[object Object]">
-              <view is="miniprogram_npm/lin-ui/icon/index">
-                <view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;"></view>
-              </view>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5fxw-pkEEbuWJQXTtMVpm_o_1602677944" lazy-load="true" mode="aspectFill"></image>
-            <view class="delete" data-index="5" data-item="[object Object]">
-              <view is="miniprogram_npm/lin-ui/icon/index">
-                <view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;"></view>
-              </view>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602677806" lazy-load="true" mode="aspectFill"></image>
-            <view class="delete" data-index="6" data-item="[object Object]">
-              <view is="miniprogram_npm/lin-ui/icon/index"></view>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_JWxD1dUCuvJRf86f98f5a2481898e9ec63c990023812" lazy-load="true" mode="aspectFill"></image>
-            <view class="delete" data-index="7" data-item="[object Object]">
-              <view is="miniprogram_npm/lin-ui/icon/index"></view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="uploader">
-        <view is="miniprogram_npm/lin-ui/icon/index">
-          <view class="l-icon icon-index--l-icon l-icon-add icon-index--l-icon-add sk-pseudo sk-pseudo-circle" style="font-size:34px;color:#3963bc;"></view>
-        </view>
-      </view>
-    </view>
-  </view>
+	<view class="sk-container">
+		<view class="container">
+			<swiper class="swiper" current="0" autoplay="false">
+				<swiper-item class="swiper-item" item-id="true" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+					<image mode="widthFix" style="height: 499.549px;" class="sk-image" />
+				</swiper-item>
+			</swiper>
+			<view class="title sk-transparent sk-text-34-0000-553 sk-text" style="background-position-x: 50%;">/ 贞漂亮的表情包 /</view>
+			<view class="desc sk-transparent sk-text-14-2857-258 sk-text" style="background-position-x: 50%;">目前为内测版本,图片还在等待大家上传,希望土豆粉们能支持,并且遵守相关规定</view>
+			<view is="miniprogram_npm/lin-ui/loadmore/index">
+				<view class="avatar-box">
+					<view class="avatar-image-item">
+						<image
+						 class="avatar-image sk-image"
+						 data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602678271"
+						 lazy-load="true"
+						 mode="aspectFill"
+						/>
+						<view class="delete" data-index="0" data-item="[object Object]">
+							<view is="miniprogram_npm/lin-ui/icon/index">
+								<view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;" />
+							</view>
+						</view>
+					</view>
+					<view class="avatar-image-item">
+						<image
+						 class="avatar-image sk-image"
+						 data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602678264"
+						 lazy-load="true"
+						 mode="aspectFill"
+						/>
+						<view class="delete" data-index="1" data-item="[object Object]">
+							<view is="miniprogram_npm/lin-ui/icon/index">
+								<view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;" />
+							</view>
+						</view>
+					</view>
+					<view class="avatar-image-item">
+						<image
+						 class="avatar-image sk-image"
+						 data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602678257"
+						 lazy-load="true"
+						 mode="aspectFill"
+						/>
+						<view class="delete" data-index="2" data-item="[object Object]">
+							<view is="miniprogram_npm/lin-ui/icon/index">
+								<view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;" />
+							</view>
+						</view>
+					</view>
+					<view class="avatar-image-item">
+						<image
+						 class="avatar-image sk-image"
+						 data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602678253"
+						 lazy-load="true"
+						 mode="aspectFill"
+						/>
+						<view class="delete" data-index="3" data-item="[object Object]">
+							<view is="miniprogram_npm/lin-ui/icon/index">
+								<view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;" />
+							</view>
+						</view>
+					</view>
+					<view class="avatar-image-item">
+						<image
+						 class="avatar-image sk-image"
+						 data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5fxw-pkEEbuWJQXTtMVpm_o_1602677972"
+						 lazy-load="true"
+						 mode="aspectFill"
+						/>
+						<view class="delete" data-index="4" data-item="[object Object]">
+							<view is="miniprogram_npm/lin-ui/icon/index">
+								<view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;" />
+							</view>
+						</view>
+					</view>
+					<view class="avatar-image-item">
+						<image
+						 class="avatar-image sk-image"
+						 data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5fxw-pkEEbuWJQXTtMVpm_o_1602677944"
+						 lazy-load="true"
+						 mode="aspectFill"
+						/>
+						<view class="delete" data-index="5" data-item="[object Object]">
+							<view is="miniprogram_npm/lin-ui/icon/index">
+								<view class="l-icon icon-index--l-icon l-icon-delete icon-index--l-icon-delete sk-pseudo sk-pseudo-circle" style="font-size:20px;color:#ffffff;" />
+							</view>
+						</view>
+					</view>
+					<view class="avatar-image-item">
+						<image
+						 class="avatar-image sk-image"
+						 data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5exrIzma3K-ZVWCSvAWo9FA_1602677806"
+						 lazy-load="true"
+						 mode="aspectFill"
+						/>
+						<view class="delete" data-index="6" data-item="[object Object]">
+							<view is="miniprogram_npm/lin-ui/icon/index" />
+						</view>
+					</view>
+					<view class="avatar-image-item">
+						<image
+						 class="avatar-image sk-image"
+						 data-url="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_JWxD1dUCuvJRf86f98f5a2481898e9ec63c990023812"
+						 lazy-load="true"
+						 mode="aspectFill"
+						/>
+						<view class="delete" data-index="7" data-item="[object Object]">
+							<view is="miniprogram_npm/lin-ui/icon/index" />
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="uploader">
+				<view is="miniprogram_npm/lin-ui/icon/index">
+					<view class="l-icon icon-index--l-icon l-icon-add icon-index--l-icon-add sk-pseudo sk-pseudo-circle" style="font-size:34px;color:#3963bc;" />
+				</view>
+			</view>
+		</view>
+	</view>
 </template>
+

@@ -11,7 +11,7 @@
   padding: 2rpx;
 }
 
-.avatar-image-item{
+.avatar-image-item {
   width: 245rpx;
   height: 245rpx;
   overflow: hidden;
@@ -24,7 +24,7 @@
   overflow: hidden;
 }
 
-.desc{
+.desc {
   text-align: center;
   color: #666;
   font-size: 20rpx;
@@ -47,7 +47,7 @@
   align-items: center;
   color: #2c61b4;
 }
-.uploader text{
+.uploader text {
   margin-top: 10rpx;
 }
 
@@ -63,10 +63,10 @@
   overflow: hidden;
 }
 
-.delete{
+.delete {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   padding: 10rpx;
   background-color: rgba(0, 0, 0, 0.527);
 }
@@ -75,23 +75,61 @@
   width: 750rpx;
 }
 
-.title{
+.title {
   height: 100rpx;
   text-align: center;
   line-height: 100rpx;
 }
 
-.readRule{
+.readRule {
   display: flex;
   justify-content: center;
   margin-top: 20rpx;
 }
 
-.deleteImg{
+.deleteImg {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: rgba(255, 0, 0, 0.527);
+}
+
+.operation {
+  position: absolute;
+  z-index: 999;
+  color: #fff;
+}
+
+.album {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10rpx;
+  border-bottom-left-radius: 50%;
+  background-image: linear-gradient(
+    to top right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.109),
+    rgba(0, 0, 0, 0.555)
+  );
+  /* filter: blur(20rpx) */
+}
+
+.album image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.like{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10rpx;
+
+}
+.like image{
+  width: 40rpx;
+  height: 40rpx;
 }

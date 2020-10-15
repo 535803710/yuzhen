@@ -1,6 +1,6 @@
 <!-- index.wxml -->
 <import src="home.skeleton.wxml" />
-<template is="skeleton" wx-if="{{imgLoading}}" />
+<template is="skeleton" wx-if="{{imgLoading && !loadAll}}" />
 <view class="container">
 	<!-- <button type="primary" bindtap="demoTap">demo</button> -->
 	<swiper class="swiper">
@@ -9,18 +9,22 @@
 		</swiper-item>
 	</swiper>
 	<view class="title">/ 贞漂亮的表情包 /</view>
-	<view class="desc">目前为内测版本,图片还在等待大家上传,希望土豆粉们能支持,并且遵守相关规定</view>
+	<view class="desc">目前为内测版本，图片还在等待大家上传</view>
+	<view class="desc">❤ 希望土豆粉们能支持，并且遵守相关规定 ❤</view>
 	<l-loadmore show="{{isLoading || loadAll}}" type="{{loadAll?'end':'loading'}}">
 		<view slot="content" class="avatar-box">
 			<view class="avatar-image-item" wx:for="{{sticker}}" wx:key="index">
 				<view wx:if="{{item.delete}}" class="deleteImg" />
 				<image
 				 class="avatar-image"
-				 src="{{item.file_id}}"
+				 src="{{item.urls[0].fileID}}"
 				 mode="aspectFill"
-				 data-url="{{item.file_id}}"
+				 data-url="{{item.urls}}"
+				 data-id="{{item._id}}"
+				 data-index="{{index}}"
 				 bind:tap="view"
 				 lazy-load="{{true}}"
+				 bindlongpress="likeImage"
 				 bindload="imgLoad"
 				/>
 				<view
@@ -32,6 +36,13 @@
 				>
 					<l-icon name="delete" color="#ffffff" />
 				</view>
+				<view wx:if="{{item.urls.length >1}}" class="album">
+					<image src="../../images/album.png" />
+				</view>
+				<view class="like" bind:tap="showLikeRule">
+					<image wx:if="{{item.like.length !== 0}}" src="../../images/icon/like_fill.png" />
+					<image  wx:else src="../../images/icon/like.png" />
+				</view>
 			</view>
 		</view>
 	</l-loadmore>
@@ -41,6 +52,7 @@
 	<!-- 上传图片 -->
 	<!-- <view class="uploader" /> -->
 </view>
+
 <j-dialog
  show="{{showRule}}"
  type="confirm"
