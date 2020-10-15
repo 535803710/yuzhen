@@ -82,6 +82,10 @@ Page({
   },
 
   async likeImage(e) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    });
     const id = util.getDataSet(e, "id");
     const index = util.getDataSet(e,'index')
     console.log(id);

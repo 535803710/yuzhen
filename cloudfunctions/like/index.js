@@ -25,6 +25,7 @@ exports.main = async (event, context) => {
       openid: wxContext.OPENID,
     })
     .get();
+    console.log('res',res);
   if (res.data.length === 0) {
     const addres = await user_sticker.add({
       data: {
@@ -47,7 +48,11 @@ exports.main = async (event, context) => {
     msg = "点赞成功";
     success = true;
   } else {
-    await user_sticker.doc(id).remove()
+    const removeRes = await user_sticker.where({
+      openid:wxContext.OPENID,
+      sticker_id: id,
+    }).remove()
+    console.log('res',removeRes);
     msg = "你已经点过赞了";
   }
   return {
