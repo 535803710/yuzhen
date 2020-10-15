@@ -7,17 +7,23 @@ const db = cloud.database({
 const sticker = db.collection('sticker')
 // 云函数入口函数
 exports.main = async (event, context) => {
+  const wxContext = cloud.getWXContext();
+
   const res = await sticker.add({
     data:{
       comment_num:0,
-      file_id:event.fileID,
       favour_num:0,
+      author_openid:wxContext.OPENID,
       create_time:new Date(),
       delete_time:null,
       update_time:null,
-      type:event.type,
+      tags:event.tags,
+      text:event.text,
+      urls:event.urls
     }
   })
   console.log(res)
-  return res
+  return {
+    data:res.errMsg ==='collection.add:ok'
+  }
 }

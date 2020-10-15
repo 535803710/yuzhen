@@ -45,7 +45,7 @@
  show="{{showRule}}"
  type="confirm"
  title="上传须知"
- bind:linconfirm="doUpload"
+ bind:linconfirm="goUpLoad"
  confirm-text="我同意"
 >
 	<view>

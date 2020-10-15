@@ -170,6 +170,12 @@ Page({
     console.log(filePath);
   },
 
+
+  goUpLoad(){
+    wx.navigateTo({
+      url: '/pages/uploadSticker/uploadSticker',
+    });
+  },
   showRule(e) {
     if (this.data.readRule) {
       this.doUpload();
@@ -205,6 +211,7 @@ Page({
     this.setData({
       userInfo: result.data
     })
+    app.globalData.userInfo = result.data
     let examination = result.data.examination;
     if (examination < 4) {
       wx.reLaunch({
