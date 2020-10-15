@@ -1,0 +1,13 @@
+<!--miniprogram/pages/uploadSticker/uploadSticker.wxml-->
+<view>
+
+	<view>
+		<view>发表文字</view>
+		<l-textarea placeholder="这一刻的想法..." indicator="{{true}}" maxlength="40" />
+	</view>
+	<view>
+		<l-image-picker urls="{{arr}}"/>
+	</view>
+
+</view>
+
