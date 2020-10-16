@@ -1,7 +1,7 @@
 <!-- pages/my/my.wxml -->
 <view>
 	<view class="avatar">
-		<view wx:if="{{login}}" class="avatar-box">
+		<view wx:if="{{userInfo}}" class="avatar-box">
 			<j-avatar open-data="{{['userAvatarUrl','userNickName']}}" />
 			<l-icon name="right" size="30" />
 		</view>

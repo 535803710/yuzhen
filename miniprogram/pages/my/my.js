@@ -8,7 +8,7 @@ Page({
     takeSession: false,
     requestResult: "",
     login: false,
-    showCollapse:['1']
+    showCollapse: ["1"],
   },
 
   onLoad: function () {
@@ -30,12 +30,12 @@ Page({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo,
               });
-              console.log(Object.keys(res.userInfo).length);
-              if (Object.keys(res.userInfo).length > 0) {
-                this.setData({
-                  login: true,
-                });
-              }
+              // console.log(Object.keys(res.userInfo).length);
+              // if (Object.keys(res.userInfo).length > 0) {
+              //   this.setData({
+              //     login: true,
+              //   });
+              // }
             },
           });
         } else {
@@ -45,7 +45,11 @@ Page({
     });
   },
 
-  async onShow() {},
+  async onShow() {
+    this.setData({
+      login: Object.keys(app.globalData.userInfo).indexOf("nickName") !== -1,
+    });
+  },
 
   onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
@@ -58,19 +62,21 @@ Page({
   },
 
   getUserInfo(res) {
-    const userInfo = res && res.detail.userInfo || null;
-    if(!userInfo){
-      return
+    const userInfo = (res && res.detail.userInfo) || null;
+    if (!userInfo) {
+      return;
     }
-    wx.cloud.callFunction({
-      name:"login",
-      data:{userInfo},
-    }).then(res=>{
-      console.log('getUserInfo',res);
-      this.setData({
-        login:true
+    wx.cloud
+      .callFunction({
+        name: "login",
+        data: { userInfo },
       })
-    })
+      .then((res) => {
+        console.log("getUserInfo", res);
+        this.setData({
+          login: true,
+        });
+      });
   },
 
   onGetOpenid: function () {

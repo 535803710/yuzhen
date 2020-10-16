@@ -53,10 +53,15 @@ Page({
   },
 
   async onLoad(options) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    });
     await this.getBanner();
     await this.getData();
     await this.getExamination();
     await this.getConfig()
+    wx.hideLoading();
   },
 
   onReady: function () {},
@@ -131,7 +136,12 @@ Page({
     }
   },
 
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () {
+    return{
+      title:'让我看看还有谁没进来',
+      imageUrl:"/images/share.jpg"
+    }
+  },
   demoTap() {
     wx.navigateTo({
       url: "../index/index",
