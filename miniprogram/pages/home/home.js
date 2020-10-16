@@ -56,6 +56,7 @@ Page({
     await this.getBanner();
     await this.getData();
     await this.getExamination();
+    await this.getConfig()
   },
 
   onReady: function () {},
@@ -67,6 +68,15 @@ Page({
     await this.onGetOpenid();
   },
 
+  async getConfig(){
+    const { result } = await wx.cloud.callFunction({
+      name: "getConfig",
+    });
+    console.log(result);
+    this.setData({
+      config: result.data,
+    });
+  },
   async getBanner() {
     const { result } = await wx.cloud.callFunction({
       name: "getBanner",

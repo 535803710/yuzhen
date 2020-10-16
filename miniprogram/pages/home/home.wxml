@@ -53,7 +53,7 @@
 			</view>
 		</view>
 	</l-loadmore>
-	<view class="uploader" bind:tap="showRule">
+	<view class="uploader" wx:if="{{config}}" bind:tap="showRule">
 		<l-icon name='add' size="68" />
 	</view>
 	<!-- 上传图片 -->
