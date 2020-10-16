@@ -9,7 +9,7 @@
 		</swiper-item>
 	</swiper>
 	<view class="title">/ 贞漂亮的表情包 /</view>
-	<view class="desc">目前为内测版本，图片还在等待大家上传</view>
+	<view class="desc">目前为beta，图片还在等待大家上传</view>
 	<view class="desc">❤ 希望土豆粉们能支持，并且遵守相关规定 ❤</view>
 	<l-loadmore show="{{isLoading || loadAll}}" type="{{loadAll?'end':'loading'}}">
 		<view slot="content" class="avatar-box">
@@ -41,7 +41,7 @@
 				</view>
 				<view class="like" bind:tap="showLikeRule">
 					<image wx:if="{{item.like.length !== 0}}" src="../../images/icon/like_fill.png" />
-					<image  wx:else src="../../images/icon/like.png" />
+					<image wx:else src="../../images/icon/like.png" />
 				</view>
 			</view>
 		</view>

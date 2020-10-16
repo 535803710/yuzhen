@@ -15,7 +15,6 @@ Page({
   },
 
   async onLoad(options) {
-    await this.onGetOpenid();
     await this.getData();
     await this.getExamination();
   },
@@ -26,6 +25,8 @@ Page({
     if (this.data.isRefersh) {
       await this.getData(0, true);
     }
+    await this.onGetOpenid();
+
   },
 
   async getData(start = 0, refersh = false) {
@@ -82,12 +83,16 @@ Page({
   },
 
   async likeImage(e) {
+    const res = this._checkUserInfo();
+    if (!res) {
+      return;
+    }
     wx.showLoading({
-      title: '加载中...',
+      title: "加载中...",
       mask: true,
     });
     const id = util.getDataSet(e, "id");
-    const index = util.getDataSet(e,'index')
+    const index = util.getDataSet(e, "index");
     console.log(id);
     const { result } = await wx.cloud.callFunction({
       name: "like",
@@ -109,8 +114,8 @@ Page({
       mask: false,
     });
     this.setData({
-      [`sticker[${index}].like`]:result.success?[{_id:id}]:[]
-    })
+      [`sticker[${index}].like`]: result.success ? [{ _id: id }] : [],
+    });
   },
   // 上传图片
   doUpload() {
@@ -208,6 +213,7 @@ Page({
 
   goUpLoad() {
     const that = this;
+
     wx.navigateTo({
       url: "/pages/uploadSticker/uploadSticker",
       events: {
@@ -221,6 +227,10 @@ Page({
     });
   },
   showRule(e) {
+    const res = this._checkUserInfo();
+    if (!res) {
+      return;
+    }
     if (this.data.readRule) {
       this.goUpLoad();
     } else {
@@ -231,6 +241,10 @@ Page({
   },
 
   view(e) {
+    const res = this._checkUserInfo();
+    if (!res) {
+      return;
+    }
     const url = util.getDataSet(e, "url");
     console.log(url);
     let urls = [];
@@ -310,12 +324,30 @@ Page({
     }
   },
 
-  showLikeRule(){
+  _checkUserInfo() {
+    if (Object.keys(this.data.userInfo).indexOf("nickName") === -1) {
+      wx.showToast({
+        title: "请先登录",
+        icon: "none",
+        duration: 1500,
+        mask: false,
+      });
+      setTimeout(() => {
+        wx.switchTab({
+          url: "/pages/my/my",
+        });
+      }, 2000);
+      return false;
+    }
+    return true;
+  },
+
+  showLikeRule() {
     wx.showToast({
-      title: '长按图片点赞或取消',
-      icon: 'none',
+      title: "长按图片点赞或取消",
+      icon: "none",
       duration: 2000,
       mask: false,
     });
-  }
+  },
 });
