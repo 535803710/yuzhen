@@ -3,9 +3,15 @@
 <template is="skeleton" wx-if="{{imgLoading && !loadAll}}" />
 <view class="container">
 	<!-- <button type="primary" bindtap="demoTap">demo</button> -->
-	<swiper class="swiper">
-		<swiper-item class="swiper-item" item-id="">
-			<image src="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_JWxD1dUCuvJRf86f98f5a2481898e9ec63c990023812" mode="widthFix" />
+	<swiper
+	 class="swiper"
+	 autoplay="{{true}}"
+	 indicator-dots="{{true}}"
+	 indicator-active-color="#ffffff"
+	 circular
+	>
+		<swiper-item wx:for="{{banner}}" wx:key="index" class="swiper-item">
+			<image src="{{item.url}}" mode="widthFix" />
 		</swiper-item>
 	</swiper>
 	<view class="title">/ 贞漂亮的表情包 /</view>
