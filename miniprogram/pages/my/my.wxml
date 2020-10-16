@@ -10,6 +10,12 @@
 		</view>
 	</view>
 
+	<content-card name="收藏图片">
+		<view wx:for="{{likeImgList}}" wx:key="index">
+			<image src="{{item}}" />
+		</view>
+	</content-card>
+
 	<view class="list">
 
 		<l-list

@@ -42,6 +42,7 @@
 				<view class="like" bind:tap="showLikeRule">
 					<image wx:if="{{item.like.length !== 0}}" src="../../images/icon/like_fill.png" />
 					<image wx:else src="../../images/icon/like.png" />
+					<view class="like-text">{{item.favour_num>999?"999+":item.favour_num}}</view>
 				</view>
 			</view>
 		</view>
@@ -75,4 +76,50 @@
 	</view>
 
 </j-dialog>
+
+<l-popup show="{{showUpload}}" content-align="bottom">
+	<view class="popup-box">
+		<content-card name="发表文字" wx:if="{{false}}">
+			<l-textarea
+			 border="{{false}}"
+			 l-class="textarea"
+			 placeholder="这一刻的想法... (可以不填)"
+			 indicator="{{true}}"
+			 maxlength="40"
+			 bind:lininput="input"
+			/>
+		</content-card>
+
+		<content-card name="选择图片（不能超过2mb）">
+			<l-image-picker
+			 urls="{{imgUrls}}"
+			 count="6"
+			 max-image-size="2097152"
+			 bind:linoversize="oversize"
+			 l-item-class="item-image"
+			 bind:linremove="removeImage"
+			 bind:linchange="onChangeTap"
+			/>
+		</content-card>
+
+		<content-card name="选择标签">
+			<view class="tags-box">
+				<l-tag
+				 wx:for="{{tags}}"
+				 plain="{{true}}"
+				 select="{{item.select}}"
+				 l-select-class="select"
+				 data-index="{{index}}"
+				 bindtap="onSelect"
+				 shape="circle"
+				>{{item.text}}
+				</l-tag>
+			</view>
+		</content-card>
+		<view class="btn">
+			<l-btn plain bind:tap="cancel">取消</l-btn>
+			<l-btn bind:tap="submit">发布</l-btn>
+		</view>
+	</view>
+</l-popup>
 

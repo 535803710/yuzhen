@@ -6,6 +6,7 @@
     "l-list":"/miniprogram_npm/lin-ui/list/index",
     "l-collapse": "/miniprogram_npm/lin-ui/collapse/index",
     "l-collapse-item": "/miniprogram_npm/lin-ui/collapse-item/index",
-    "l-card":"/miniprogram_npm/lin-ui/card/index"
+    "l-card":"/miniprogram_npm/lin-ui/card/index",
+    "content-card":"/components/content-card/index"
   }
 }

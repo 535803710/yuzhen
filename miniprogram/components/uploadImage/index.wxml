@@ -1,6 +1,4 @@
-<!-- miniprogram/pages/uploadSticker/uploadSticker.wxml -->
-<!-- <view>
-
+<view>
 	<content-card name="发表文字" wx:if="{{false}}">
 		<l-textarea
 		 border="{{false}}"
@@ -40,5 +38,5 @@
 	<view class="btn">
 		<l-btn size="large" bind:tap="submit">发布</l-btn>
 	</view>
-</view> -->
+</view>
 
