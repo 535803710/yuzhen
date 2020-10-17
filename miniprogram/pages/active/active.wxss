@@ -1,0 +1,18 @@
+/* miniprogram/pages/active/active.wxss */
+
+
+.card{
+    margin-top: 30rpx;
+}
+
+.content{
+    margin: 10rpx;
+    font-size: 28rpx;
+    color: rgb(88, 88, 88);
+}
+
+
+.sub{
+    display: flex;
+    justify-content: flex-end;
+}

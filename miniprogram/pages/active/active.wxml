@@ -1,0 +1,20 @@
+<!-- miniprogram/pages/active/active.wxml -->
+<l-btn bind:tap="addActive">发布</l-btn>
+<l-btn bind:tap="getActive">更新</l-btn>
+
+<view class="card" wx:for="{{active}}" wx:key="index">
+	<l-card
+	 type="avatar"
+	 image="/images/avatar.jpg"
+	 title="{{item.name}}"
+	 describe="发布于：{{item.create_time}}"
+	>
+		<!-- 此处为content -->
+		<view class="content">活动内容：{{item.content}}</view>
+		<view class="content">活动时间：{{item.startTime}}</view>
+		<view class="sub">
+			<l-btn data-item="{{item}}" wx:if="{{item.subscribeAbled}}" bindlintap="sub">通知我</l-btn>
+		</view>
+	</l-card>
+</view>
+

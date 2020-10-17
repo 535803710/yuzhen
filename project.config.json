@@ -69,6 +69,12 @@
         {
           "name": "pages/uploadSticker/uploadSticker",
           "pathName": "pages/uploadSticker/uploadSticker",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/active/active",
+          "pathName": "pages/active/active",
           "scene": null
         }
       ]
