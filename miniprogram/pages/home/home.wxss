@@ -73,6 +73,7 @@
 
 .swiper-item image {
   width: 750rpx;
+  height: 750rpx;
 }
 
 .title {
@@ -129,6 +130,12 @@
   padding: 10rpx;
   display: flex;
   align-items: center;
+  background-image: linear-gradient(
+    to top right,
+    rgba(0, 0, 0, 0.644),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0)
+  );
 }
 .like image{
   width: 40rpx;

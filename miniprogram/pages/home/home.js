@@ -50,21 +50,22 @@ Page({
     imgUrls: [],
 
     showUpload: false,
+    clearImgs: false,
   },
 
   async onLoad(options) {
     wx.showLoading({
-      title: '加载中',
+      title: "加载中",
       mask: true,
     });
     await this.getBanner();
     await this.getData();
     await this.getExamination();
-    await this.getConfig()
+    await this.getConfig();
     wx.hideLoading();
   },
 
-  onReady: function () { },
+  onReady: function () {},
 
   async onShow() {
     if (this.data.isRefersh) {
@@ -74,12 +75,15 @@ Page({
   },
 
   async getConfig() {
-    const { result } = await wx.cloud.callFunction({
-      name: "getConfig",
-    });
-    console.log(result);
+    // const { result } = await wx.cloud.callFunction({
+    //   name: "getConfig",
+    // });
+    // console.log(result);
+    // this.setData({
+    //   config: result.data,
+    // });
     this.setData({
-      config: result.data,
+      config: +this.data.userInfo.examination > 3,
     });
   },
   async getBanner() {
@@ -94,7 +98,7 @@ Page({
     if (refersh) {
       this.setData({
         sticker: [],
-        loadAll:false
+        loadAll: false,
       });
     }
     this.setData({
@@ -125,15 +129,15 @@ Page({
       });
     }
   },
-  onHide: function () { },
-  onUnload: function () { },
+  onHide: function () {},
+  onUnload: function () {},
   async onPullDownRefresh(e) {
     console.log(e);
     wx.showLoading({
-      title: '加载中...',
+      title: "加载中...",
       mask: true,
     });
-    await this.getData(0, true)
+    await this.getData(0, true);
     wx.hideLoading();
   },
   onReachBottom() {
@@ -145,9 +149,9 @@ Page({
 
   onShareAppMessage: function () {
     return {
-      title: '让我看看还有谁没进来',
-      imageUrl: "/images/share.jpg"
-    }
+      title: "让我看看还有谁没进来",
+      imageUrl: "/images/share.jpg",
+    };
   },
   demoTap() {
     wx.navigateTo({
@@ -186,10 +190,10 @@ Page({
       duration: 1500,
       mask: false,
     });
-    const num = +this.data.sticker[index].favour_num
+    const num = +this.data.sticker[index].favour_num;
     this.setData({
       [`sticker[${index}].like`]: result.success ? [{ _id: id }] : [],
-      [`sticker[${index}].favour_num`]: result.success ? num+ 1 : num - 1,
+      [`sticker[${index}].favour_num`]: result.success ? num + 1 : num - 1,
     });
   },
 
@@ -448,7 +452,7 @@ Page({
       if (result.data) {
         wx.showToast({
           title: "上传成功，感谢❤",
-          icon: 'none',
+          icon: "none",
           duration: 2000,
           mask: true,
         });
@@ -461,9 +465,9 @@ Page({
         // }, 2000);
         this.setData({
           showUpload: false,
-          imgUrls: []
-        })
-        this.getData(0, true)
+          clearImgs: true,
+        });
+        this.getData(0, true);
       }
     } finally {
       wx.hideLoading();

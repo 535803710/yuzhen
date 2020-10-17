@@ -37,12 +37,7 @@
         "iconPath": "/images/tabbar/discover.png",
         "selectedIconPath": "/images/tabbar/discover (1).png"
       },
-      {
-        "pagePath": "pages/active/active",
-        "text": "动态",
-        "iconPath": "/images/tabbar/we.png",
-        "selectedIconPath": "/images/tabbar/we_fill.png"
-      },
+
       {
         "pagePath": "pages/my/my",
         "text": "我的",
