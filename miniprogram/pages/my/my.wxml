@@ -36,6 +36,11 @@
 		 right-desc="yuzhenclub@163.com"
 		 is-link="{{false}}"
 		/>
+  <l-list title="开启上传">
+    <view slot="right-section">
+          <switch checked="{{config}}" bindchange="uploadSwitch" />
+    </view>
+   </l-list>
 
 		<view class="collapse-box">
 			<l-collapse expand-item-id='{{showCollapse}}'>
@@ -50,10 +55,10 @@
 					<view>*图片点赞</view>
 					<view>*取消点赞</view>
 					<view>*图片画廊</view>
+					<view>*热度排行</view>
 					<view>❤ 如果你有什么好想法可以发邮件给作者 ❤</view>
 				</l-collapse-item>
 				<l-collapse-item l-title-class="collapseTitle" title="后续功能" item-id="1">
-					<view>*热度排行</view>
 					<view>*应援头像</view>
 					<view>*分类搜索</view>
 					<view>*用户资料填写</view>

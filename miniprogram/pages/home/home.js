@@ -77,16 +77,16 @@ Page({
   },
 
   async getConfig() {
-    // const { result } = await wx.cloud.callFunction({
-    //   name: "getConfig",
-    // });
-    // console.log(result);
-    // this.setData({
-    //   config: result.data,
-    // });
-    this.setData({
-      config: +this.data.userInfo.examination > 3,
+    const { result } = await wx.cloud.callFunction({
+      name: "getConfig",
     });
+    console.log(result);
+    this.setData({
+      config: result.data,
+    });
+    // this.setData({
+    //   config: +this.data.userInfo.examination > 3,
+    // });
   },
   async getBanner() {
     const { result } = await wx.cloud.callFunction({

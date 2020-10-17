@@ -50,6 +50,7 @@ Page({
     this.setData({
       login: Object.keys(app.globalData.userInfo).indexOf("nickName") !== -1,
     });
+    await this.getConfig()
   },
 
   onGetUserInfo: function (e) {
@@ -110,4 +111,24 @@ Page({
       },
     });
   },
+
+  async uploadSwitch(e){
+    console.log(e);
+    await wx.cloud.callFunction({
+      name:'getConfig',
+      data:{
+        config:e.detail.value
+      }
+    })
+  },
+
+  async getConfig(){
+    const {result} =await  wx.cloud.callFunction({
+      name:'getConfig'
+    })
+    this.setData({
+      config :result.data
+    })
+
+  }
 });
