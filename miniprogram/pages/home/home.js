@@ -64,7 +64,7 @@ Page({
     wx.hideLoading();
   },
 
-  onReady: function () {},
+  onReady: function () { },
 
   async onShow() {
     if (this.data.isRefersh) {
@@ -73,7 +73,7 @@ Page({
     await this.onGetOpenid();
   },
 
-  async getConfig(){
+  async getConfig() {
     const { result } = await wx.cloud.callFunction({
       name: "getConfig",
     });
@@ -124,10 +124,16 @@ Page({
       });
     }
   },
-  onHide: function () {},
-  onUnload: function () {},
-  onPullDownRefresh: function (e) {
+  onHide: function () { },
+  onUnload: function () { },
+  async onPullDownRefresh(e) {
     console.log(e);
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    });
+    await this.getData(0, true)
+    wx.hideLoading();
   },
   onReachBottom() {
     const start = this.data.sticker.length;
@@ -137,9 +143,9 @@ Page({
   },
 
   onShareAppMessage: function () {
-    return{
-      title:'让我看看还有谁没进来',
-      imageUrl:"/images/share.jpg"
+    return {
+      title: '让我看看还有谁没进来',
+      imageUrl: "/images/share.jpg"
     }
   },
   demoTap() {
@@ -179,8 +185,10 @@ Page({
       duration: 1500,
       mask: false,
     });
+    const num = +this.data.sticker[index].favour_num
     this.setData({
       [`sticker[${index}].like`]: result.success ? [{ _id: id }] : [],
+      [`sticker[${index}].favour_num`]: result.success ? num+ 1 : num - 1,
     });
   },
 
@@ -439,16 +447,22 @@ Page({
       if (result.data) {
         wx.showToast({
           title: "上传成功，感谢❤",
+          icon: 'none',
           duration: 2000,
           mask: true,
         });
-        const eventChannel = this.getOpenerEventChannel();
-        eventChannel.emit("refersh", { data: true });
-        setTimeout(() => {
-          wx.navigateBack({
-            delta: 1,
-          });
-        }, 2000);
+        // const eventChannel = this.getOpenerEventChannel();
+        // eventChannel.emit("refersh", { data: true });
+        // setTimeout(() => {
+        //   wx.navigateBack({
+        //     delta: 1,
+        //   });
+        // }, 2000);
+        this.setData({
+          showUpload: false,
+          imgUrls: []
+        })
+        this.getData(0, true)
       }
     } finally {
       wx.hideLoading();

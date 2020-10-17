@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh":true,
   "usingComponents": {
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
     "j-card":"/miniprogram_npm/lin-ui/card/index",
