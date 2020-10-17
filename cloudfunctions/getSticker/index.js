@@ -19,15 +19,17 @@ exports.main = async (event, context) => {
   console.log("event", event);
   const start = +event.start || 0;
   const num = +event.num || 12;
+  let sort = { create_time: -1 }
+  if(Object.keys(event).indexOf('type')!==-1){
+    sort = event.type === "hot" ? { favour_num: -1 } : { create_time: -1 };
+  }
   try {
     const { list } = await sticker
       .aggregate()
       .match({
         delete_time: null,
       })
-      .sort({
-        create_time: -1,
-      })
+      .sort(sort)
       .skip(start)
       .limit(num)
       .lookup({

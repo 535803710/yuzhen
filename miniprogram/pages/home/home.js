@@ -51,6 +51,8 @@ Page({
 
     showUpload: false,
     clearImgs: false,
+
+    stickerType:'new'
   },
 
   async onLoad(options) {
@@ -110,6 +112,7 @@ Page({
         name: "getSticker",
         data: {
           start,
+          type:this.data.stickerType
         },
       });
       console.log(result);
@@ -601,5 +604,25 @@ Page({
     });
 
     console.log(filePath);
+  },
+
+  chooseHot(){
+    if(this.data.stickerType === 'hot'){
+      return
+    }
+    this.setData({
+      stickerType:'hot'
+    })
+    this.getData(0,true)
+  },
+  chooseNew(){
+    if(this.data.stickerType === 'new'){
+      return
+    }
+    this.setData({
+      stickerType:'new'
+    })
+    this.getData(0,true)
+
   },
 });

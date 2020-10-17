@@ -17,6 +17,22 @@
 	<view class="title">/ 贞漂亮的表情包 /</view>
 	<view class="desc">目前为beta，图片还在等待大家上传</view>
 	<view class="desc">❤ 希望土豆粉们能支持，并且遵守相关规定 ❤</view>
+	<view class="chooseType">
+		<l-tag
+		 class="chooseType-tag"
+		 shape="circle"
+		 plain="{{stickerType!=='new'}}"
+		 bind:tap="chooseNew"
+		>最新
+		</l-tag>
+		<l-tag
+		 class="chooseType-tag"
+		 shape="circle"
+		 plain="{{stickerType!=='hot'}}"
+		 bind:tap="chooseHot"
+		>最热
+		</l-tag>
+	</view>
 	<l-loadmore show="{{isLoading || loadAll}}" type="{{loadAll?'end':'loading'}}">
 		<view slot="content" class="avatar-box">
 			<view class="avatar-image-item" wx:for="{{sticker}}" wx:key="index">
