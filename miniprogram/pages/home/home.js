@@ -94,6 +94,7 @@ Page({
     if (refersh) {
       this.setData({
         sticker: [],
+        loadAll:false
       });
     }
     this.setData({

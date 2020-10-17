@@ -46,6 +46,7 @@ Page({
   },
 
   async onShow() {
+    console.log(Object.keys(app.globalData.userInfo).indexOf("nickName") !== -1);
     this.setData({
       login: Object.keys(app.globalData.userInfo).indexOf("nickName") !== -1,
     });

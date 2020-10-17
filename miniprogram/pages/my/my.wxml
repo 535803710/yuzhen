@@ -1,7 +1,7 @@
 <!-- pages/my/my.wxml -->
 <view>
 	<view class="avatar">
-		<view wx:if="{{userInfo}}" class="avatar-box">
+		<view wx:if="{{login}}" class="avatar-box">
 			<j-avatar open-data="{{['userAvatarUrl','userNickName']}}" />
 			<l-icon name="right" size="30" />
 		</view>
@@ -53,10 +53,11 @@
 					<view>❤ 如果你有什么好想法可以发邮件给作者 ❤</view>
 				</l-collapse-item>
 				<l-collapse-item l-title-class="collapseTitle" title="后续功能" item-id="1">
-					<view>*用户资料填写</view>
-					<view>*应援头像</view>
 					<view>*热度排行</view>
+					<view>*应援头像</view>
 					<view>*分类搜索</view>
+					<view>*用户资料填写</view>
+					<view>*资讯（可能）</view>
 					<view>❤ 如果你有什么好想法可以发邮件给作者 ❤</view>
 				</l-collapse-item>
 			</l-collapse>
