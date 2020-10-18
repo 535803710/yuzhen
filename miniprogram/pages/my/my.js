@@ -51,6 +51,10 @@ Page({
       login: Object.keys(app.globalData.userInfo).indexOf("nickName") !== -1,
     });
     await this.getConfig()
+    this.setData({
+      switch:app.globalData.userInfo.openid === "okIoi5exrIzma3K-ZVWCSvAWo9FA"
+    })
+    console.log(app.globalData.userInfo);
   },
 
   onGetUserInfo: function (e) {

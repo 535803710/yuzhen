@@ -36,7 +36,7 @@
 		 right-desc="yuzhenclub@163.com"
 		 is-link="{{false}}"
 		/>
-  <l-list title="开启上传">
+  <l-list title="开启上传" wx:if="{{switch}}">
     <view slot="right-section">
           <switch checked="{{config}}" bindchange="uploadSwitch" />
     </view>
