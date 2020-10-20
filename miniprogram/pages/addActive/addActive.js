@@ -24,6 +24,7 @@ Page({
     content: "",
     address: "",
     type: "",
+    submit:false
   },
 
   chooseStartTime(event) {
@@ -118,13 +119,13 @@ Page({
     return true
   },
   async submit() {
-    this.data.submit = true
     if(this.data.submit){
       return
     }
     if(!this.verify()){
       return
     }
+    this.data.submit = true
     const { result } = await wx.cloud.callFunction({
       name: "addActive",
       data: {

@@ -42,7 +42,7 @@
 	/>
 	<l-datetime-picker
 	 wx:if="{{chooseEndTime}}"
-	 title="选择开始时间"
+	 title="选择结束时间"
 	 type="datetime"
 	 value="{{ currentEndDate }}"
 	 min-date="{{ minEndTime }}"
