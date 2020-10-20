@@ -57,14 +57,14 @@
 					<view>*图片画廊</view>
 					<view>*热度排行</view>
 					<view>*于贞动态</view>
-					<view>❤ 如果你有什么好想法可以发邮件给作者 ❤</view>
+					<view>❤ 如果你有什么好想法可以联系作者 ❤</view>
 				</l-collapse-item>
 				<l-collapse-item l-title-class="collapseTitle" title="后续功能" item-id="1">
 					<view>*订阅动态</view>
 					<view>*应援头像</view>
 					<view>*分类搜索</view>
 					<view>*用户资料填写</view>
-					<view>❤ 如果你有什么好想法可以发邮件给作者 ❤</view>
+					<view>❤ 如果你有什么好想法可以联系 ❤</view>
 				</l-collapse-item>
 			</l-collapse>
 		</view>
