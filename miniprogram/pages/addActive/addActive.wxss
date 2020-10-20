@@ -1,0 +1,34 @@
+/* miniprogram/pages/addActive/addActive.wxss */
+
+.addActive {
+  background-color: #fff;
+  height: 800rpx;
+  padding-top: 20rpx;
+}
+
+.addActive-title {
+  text-align: center;
+  margin: 20rpx 0;
+}
+
+.addActive-content {
+  padding: 25rpx;
+}
+
+.active-class {
+  color: rgb(20, 138, 40) !important;
+}
+
+.textarea {
+  height: 400rpx !important;
+}
+
+.btn {
+  position: fixed;
+  bottom: 20rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}

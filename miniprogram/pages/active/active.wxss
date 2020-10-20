@@ -1,6 +1,9 @@
 /* miniprogram/pages/active/active.wxss */
 
+page{
 
+    background-color: #f8f8f8;
+}
 .card{
     margin-top: 30rpx;
 }
@@ -9,10 +12,48 @@
     margin: 10rpx;
     font-size: 28rpx;
     color: rgb(88, 88, 88);
+    line-height: 50rpx;
+}
+
+.content text{
+    font-weight: bold;
 }
 
 
 .sub{
     display: flex;
     justify-content: flex-end;
+}
+
+.addActive{
+    background-color: #fff;
+    height: 800rpx;
+    padding-top: 20rpx;
+}
+
+.addActive-title{
+    text-align: center;
+    margin: 20rpx 0;
+}
+
+.addActive-content{
+    padding: 25rpx;
+}
+
+.active-class{
+    color: rgb(20, 138, 40) !important;
+}
+
+.addActive-btn{
+    display: flex;
+    justify-content: center;
+    padding: 20rpx;
+}
+
+.loadAll{
+    display: flex;
+    justify-content: center;
+    color: #666;
+    font-size: 28rpx;
+    margin: 40rpx;
 }

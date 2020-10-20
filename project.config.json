@@ -18,7 +18,7 @@
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
+    "compileHotReLoad": true,
     "useMultiFrameRuntime": false,
     "useApiHook": true,
     "babelSetting": {
@@ -75,6 +75,12 @@
         {
           "name": "pages/active/active",
           "pathName": "pages/active/active",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/addActive/addActive",
+          "pathName": "pages/addActive/addActive",
           "scene": null
         }
       ]

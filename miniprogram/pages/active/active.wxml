@@ -1,7 +1,8 @@
 <!-- miniprogram/pages/active/active.wxml -->
-<l-btn bind:tap="addActive">发布</l-btn>
-<l-btn bind:tap="getActive">更新</l-btn>
-
+<view class="addActive-btn" wx:if="{{userInfo.scope === 'admin'}}">
+	<l-btn bind:tap="addActive">发布</l-btn>
+</view>
+<!-- <l-btn bind:tap="getActive">更新</l-btn> -->
 <view class="card" wx:for="{{active}}" wx:key="index">
 	<l-card
 	 type="avatar"
@@ -10,11 +11,27 @@
 	 describe="发布于：{{item.create_time}}"
 	>
 		<!-- 此处为content -->
-		<view class="content">活动内容：{{item.content}}</view>
-		<view class="content">活动时间：{{item.startTime}}</view>
-		<view class="sub">
-			<l-btn data-item="{{item}}" wx:if="{{item.subscribeAbled}}" bindlintap="sub">通知我</l-btn>
+		<view class="content">
+			<text>活动内容：</text>
+			{{item.content}}
+		</view>
+		<view class="content">
+			<text>开始时间：</text>
+			{{item.startTime}}
+		</view>
+		<view class="content">
+			<text>结束时间：</text>
+			{{item.endTime}}
+		</view>
+		<view class="sub" wx:if="{{true}}">
+			<!-- <l-btn data-item="{{item}}" wx:if="{{item.subscribeAbled && item.status && !item.overdue}}" bindlintap="sub">
+				通知我
+			</l-btn> -->
+			
+			<l-btn disabled plain="{{true}}">{{item.activeStatus}}</l-btn>
 		</view>
 	</l-card>
+
 </view>
+<view wx:if="{{loadAll}}" class="loadAll">—— 全部加载完成 ——</view>
 
