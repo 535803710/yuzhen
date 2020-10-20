@@ -23,27 +23,37 @@ Page({
     loadAll: false,
   },
 
-  onLoad: function (options) {},
-  onReady: function () {},
-  async onShow() {
+  async onLoad (options) {
     await this.getActive();
     this.setData({
       userInfo: app.globalData.userInfo,
     });
   },
+  onReady: function () {},
+  async onShow() {
 
-  onPullDownRefresh: function () {
+  },
+
+  async onPullDownRefresh (e) {
+    console.log('eeee',e);
     this.setData({
       active: [],
       loadAll: false,
       start: 0,
     });
+
+    await this.getActive();
+
   },
 
   onReachBottom: function () {
     this.getActive();
   },
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () {
+    return {
+      title:"来看看于贞最近在做什么?"
+    }
+  },
 
   async addActive() {
     wx.navigateTo({

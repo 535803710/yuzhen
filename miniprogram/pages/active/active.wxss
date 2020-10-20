@@ -48,6 +48,10 @@ page{
     display: flex;
     justify-content: center;
     padding: 20rpx;
+    position: fixed;
+    bottom: 20rpx;
+    right: 0;
+    z-index: 99;
 }
 
 .loadAll{
