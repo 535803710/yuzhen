@@ -30,7 +30,9 @@ Page({
     });
   },
   onReady: function () {},
-  async onShow() {},
+  async onShow() {
+    
+  },
 
   async onPullDownRefresh(e) {
     console.log("eeee", e);
@@ -84,17 +86,52 @@ Page({
     wx.hideLoading();
   },
 
-  sub(e) {
+  async sub(e) {
     // const item = util.getDataSet(e, "item");
     // console.log(item);
     wx.requestSubscribeMessage({
       tmplIds: ["1IwA78zgg5RI1ZafkHduvJ6w8eHt2OrGoY2BmDJcQuI"],
       success(res) {
+        console.log(res);
         wx.cloud.callFunction({
           name: "subActive",
           data: { tmplIds: ["1IwA78zgg5RI1ZafkHduvJ6w8eHt2OrGoY2BmDJcQuI"] },
         });
       },
+      fail(err){
+        console.log('fail');
+        console.log('fail',err);
+      }
+    });
+    // const res =await this.promiseSetting();
+
+  
+  },
+
+  promiseSetting() {
+    return new Promise((resolve, reject) => {
+      wx.getSetting({
+        withSubscriptions: true,
+        success: (res) => {
+          console.log(res);
+          console.log(
+            res.subscriptionsSetting.itemSettings[
+              "1IwA78zgg5RI1ZafkHduvJ6w8eHt2OrGoY2BmDJcQuI"
+            ]
+          );
+          if (
+            res.subscriptionsSetting.itemSettings[
+              "1IwA78zgg5RI1ZafkHduvJ6w8eHt2OrGoY2BmDJcQuI"
+            ] === "reject"
+          ) {
+            resolve(false);
+          }else{
+            resolve(true);
+          }
+        },
+        fail: () => {},
+        complete: () => {},
+      });
     });
   },
   _overdue(startTime, endTime) {

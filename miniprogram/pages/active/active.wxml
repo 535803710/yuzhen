@@ -1,7 +1,7 @@
 <!-- miniprogram/pages/active/active.wxml -->
 <view class="addActive-btn">
 	<l-btn bind:tap="addActive" wx:if="{{userInfo.scope === 'admin'}}">发布</l-btn>
-	<l-btn bind:tap="sub" >订阅</l-btn>
+	<l-btn bind:tap="sub">订阅动态</l-btn>
 </view>
 
 <!-- <l-btn bind:tap="getActive">更新</l-btn> -->
@@ -38,4 +38,7 @@
 <view wx:if="{{loadAll}}" class="loadAll">—— 全部加载完成 ——</view>
 
 <add-active show="{{showAdd}}" />
+<l-popup content-align="bottom">
+	<view class="" />
+</l-popup>
 
