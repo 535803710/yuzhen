@@ -27,11 +27,13 @@
 			<!-- <l-btn data-item="{{item}}" wx:if="{{item.subscribeAbled && item.status && !item.overdue}}" bindlintap="sub">
 				通知我
 			</l-btn> -->
-			
+
 			<l-btn disabled plain="{{true}}">{{item.activeStatus}}</l-btn>
 		</view>
 	</l-card>
 
 </view>
 <view wx:if="{{loadAll}}" class="loadAll">—— 全部加载完成 ——</view>
+
+<add-active show="{{showAdd}}" />
 

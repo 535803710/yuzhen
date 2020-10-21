@@ -1,0 +1,62 @@
+<view wx:if="{{show}}">
+
+	<view class="addActive">
+		<view class="addActive-title">发布活动</view>
+		<l-input label="活动标题" placeholder="请输入活动标题" bind:lininput="inputTitle" />
+		<l-input label="活动类型" placeholder="请输入活动类型" bind:lininput="inputType" />
+		<l-input label="活动地点" placeholder="请输入活动地点" bind:lininput="inputAddress" />
+		<view class="addActive-content">
+			<view style="font-size:28rpx">活动内容</view>
+			<l-textarea l-class="textarea" placeholder="请输入活动内容..." bind:lininput="inputContent" />
+			<l-list
+			 title="选择开始时间"
+			 right-desc="{{startTime}}"
+			 bind:lintap="showTime"
+			 data-type="chooseStartTime"
+			/>
+			<l-list
+			 title="选择结束时间"
+			 right-desc="{{endTime}}"
+			 bind:lintap="showTime"
+			 data-type="chooseEndTime"
+			/>
+			<!-- <l-list title="开启订阅">
+            <view slot="right-section">
+                <switch bindchange="changeSub" />
+			</view>
+		</l-list> -->
+		</view>
+	</view>
+	<view class="btn">
+		<j-btn plain bind:lintap="cancelSubmit">取消</j-btn>
+		<j-btn class="submit" bind:lintap="submit">提交</j-btn>
+	</view>
+	<l-popup show="{{chooseStartTime||chooseEndTime}}" content-align="bottom">
+		<l-datetime-picker
+		 wx:if="{{chooseStartTime}}"
+		 title="选择开始时间"
+		 type="datetime"
+		 value="{{ currentStartDate }}"
+		 min-date="{{ minDate }}"
+		 bind:input="chooseStartTime"
+		 active-class="active-class"
+		 bind:confirm="confirmTime"
+		 bind:cancel="cancelStartTime"
+		/>
+		<l-datetime-picker
+		 wx:if="{{chooseEndTime}}"
+		 title="选择结束时间"
+		 type="datetime"
+		 value="{{ currentEndDate }}"
+		 min-date="{{ minEndTime }}"
+		 bind:input="chooseEndTime"
+		 active-class="active-class"
+		 bind:confirm="confirmTime"
+		 bind:cancel="cancelEndTime"
+		/>
+	</l-popup>
+
+	<l-toast/>
+
+</view>
+

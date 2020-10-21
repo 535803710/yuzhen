@@ -56,22 +56,9 @@ Page({
   },
 
   async addActive() {
-    wx.navigateTo({
-      url: "/pages/addActive/addActive",
-    });
-    // const { result } = await wx.cloud.callFunction({
-    //   name: "addActive",
-    //   data: {
-    //     name: "VAS@VasLive瓦肆现场",
-    //     startTime: "2020-10-18",
-    //     endTime: "2020-10-18",
-    //     content: "rosedoggy演出嘉宾土豆老师@于贞Ingrita敬请期待！",
-    //     address: "上海BUDX",
-    //     type: "现场嘉宾",
-    //     subscribeAbled: true,
-    //   },
-    // });
-    // console.log(result);
+    this.setData({
+      showAdd:true
+    })
   },
 
   async getActive() {
