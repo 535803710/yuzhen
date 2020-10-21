@@ -1,6 +1,8 @@
 {
   "permissions": {
     "openapi": [
+      "uniformMessage.send",
+      "subscribeMessage.send"
     ]
   }
 }

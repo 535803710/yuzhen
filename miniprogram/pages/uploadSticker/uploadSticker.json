@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "l-image-picker":"/miniprogram_npm/lin-ui/image-picker/index",
-    "l-textarea":"/miniprogram_npm/lin-ui/textarea/index",
-    "content-card":"/components/content-card/index",
-    "l-tag":"/miniprogram_npm/lin-ui/tag/index",
-    "l-btn":"/miniprogram_npm/lin-ui/button/index"
-  }
-}

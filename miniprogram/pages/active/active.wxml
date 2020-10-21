@@ -1,7 +1,9 @@
 <!-- miniprogram/pages/active/active.wxml -->
-<view class="addActive-btn" wx:if="{{userInfo.scope === 'admin'}}">
-	<l-btn bind:tap="addActive">发布</l-btn>
+<view class="addActive-btn">
+	<l-btn bind:tap="addActive" wx:if="{{userInfo.scope === 'admin'}}">发布</l-btn>
+	<l-btn bind:tap="sub" >订阅</l-btn>
 </view>
+
 <!-- <l-btn bind:tap="getActive">更新</l-btn> -->
 <view class="card" wx:for="{{active}}" wx:key="index">
 	<l-card

@@ -23,19 +23,17 @@ Page({
     loadAll: false,
   },
 
-  async onLoad (options) {
+  async onLoad(options) {
     await this.getActive();
     this.setData({
       userInfo: app.globalData.userInfo,
     });
   },
   onReady: function () {},
-  async onShow() {
+  async onShow() {},
 
-  },
-
-  async onPullDownRefresh (e) {
-    console.log('eeee',e);
+  async onPullDownRefresh(e) {
+    console.log("eeee", e);
     this.setData({
       active: [],
       loadAll: false,
@@ -43,7 +41,6 @@ Page({
     });
 
     await this.getActive();
-
   },
 
   onReachBottom: function () {
@@ -51,14 +48,14 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title:"来看看于贞最近在做什么?"
-    }
+      title: "来看看于贞最近在做什么?",
+    };
   },
 
   async addActive() {
     this.setData({
-      showAdd:true
-    })
+      showAdd: true,
+    });
   },
 
   async getActive() {
@@ -88,8 +85,17 @@ Page({
   },
 
   sub(e) {
-    const item = util.getDataSet(e, "item");
-    console.log(item);
+    // const item = util.getDataSet(e, "item");
+    // console.log(item);
+    wx.requestSubscribeMessage({
+      tmplIds: ["1IwA78zgg5RI1ZafkHduvJ6w8eHt2OrGoY2BmDJcQuI"],
+      success(res) {
+        wx.cloud.callFunction({
+          name: "subActive",
+          data: { tmplIds: ["1IwA78zgg5RI1ZafkHduvJ6w8eHt2OrGoY2BmDJcQuI"] },
+        });
+      },
+    });
   },
   _overdue(startTime, endTime) {
     const date1 = new Date(startTime);

@@ -46,7 +46,9 @@ page{
 
 .addActive-btn{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180rpx;
     padding: 20rpx;
     position: fixed;
     bottom: 20rpx;
