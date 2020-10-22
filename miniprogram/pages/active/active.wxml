@@ -1,7 +1,7 @@
 <!-- miniprogram/pages/active/active.wxml -->
 <view class="addActive-btn">
 	<l-btn bind:tap="addActive" wx:if="{{userInfo.scope === 'admin'}}">发布</l-btn>
-	<l-btn wx:if="{{showSub}}" bind:tap="sub">订阅动态</l-btn>
+	<l-btn disabled="{{!showSub}}" bind:lintap="sub">{{showSub?'订阅动态':'已经订阅'}}</l-btn>
 </view>
 
 <!-- <l-btn bind:tap="getActive">更新</l-btn> -->

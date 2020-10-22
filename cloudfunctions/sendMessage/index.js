@@ -12,7 +12,7 @@ const _ = db.command;
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext();
-  const { total } = await active.count();
+  const { total } = await active.where({delete_time:null}).count();
   const subUser = await subActive
     .where({
       done: false,
