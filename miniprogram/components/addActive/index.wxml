@@ -20,11 +20,11 @@
 			 bind:lintap="showTime"
 			 data-type="chooseEndTime"
 			/>
-			<!-- <l-list title="开启订阅">
-            <view slot="right-section">
-                <switch bindchange="changeSub" />
-			</view>
-		</l-list> -->
+			<l-list title="开启订阅">
+				<view slot="right-section">
+					<switch bindchange="changeSub" />
+				</view>
+			</l-list>
 		</view>
 	</view>
 	<view class="btn">

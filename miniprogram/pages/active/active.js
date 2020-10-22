@@ -21,6 +21,7 @@ Page({
 
     start: 0,
     loadAll: false,
+    showSub:false,
   },
 
   async onLoad(options) {
@@ -30,9 +31,7 @@ Page({
     });
   },
   onReady: function () {},
-  async onShow() {
-    
-  },
+  async onShow() {},
 
   async onPullDownRefresh(e) {
     console.log("eeee", e);
@@ -82,6 +81,7 @@ Page({
     this.setData({
       active,
       loadAll: result.loadAll,
+      showSub:result.sub === 0
     });
     wx.hideLoading();
   },
@@ -89,23 +89,28 @@ Page({
   async sub(e) {
     // const item = util.getDataSet(e, "item");
     // console.log(item);
+    const that = this
     wx.requestSubscribeMessage({
       tmplIds: ["1IwA78zgg5RI1ZafkHduvJ6w8eHt2OrGoY2BmDJcQuI"],
       success(res) {
         console.log(res);
         wx.cloud.callFunction({
           name: "subActive",
-          data: { tmplIds: ["1IwA78zgg5RI1ZafkHduvJ6w8eHt2OrGoY2BmDJcQuI"] },
-        });
+          data: {
+            templateId: "1IwA78zgg5RI1ZafkHduvJ6w8eHt2OrGoY2BmDJcQuI",
+          },
+        }).then(r=>{
+          that.setData({
+            showSub:false
+          })
+        })
       },
-      fail(err){
-        console.log('fail');
-        console.log('fail',err);
-      }
+      fail(err) {
+        console.log("fail");
+        console.log("fail", err);
+      },
     });
     // const res =await this.promiseSetting();
-
-  
   },
 
   promiseSetting() {
@@ -125,7 +130,7 @@ Page({
             ] === "reject"
           ) {
             resolve(false);
-          }else{
+          } else {
             resolve(true);
           }
         },

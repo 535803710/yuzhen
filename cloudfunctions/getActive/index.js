@@ -6,10 +6,12 @@ const db = cloud.database({
   env: "dev-85arv",
 });
 const active = db.collection("active");
-
+const subActive = db.collection("active");
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext();
+  const sub =await subActive.where({ openid: wxContext.OPENID, done: false }).count();
+  console.log('sub',sub);
   const start = +event.start;
   const num = +event.num || 10;
   let res = {
@@ -29,6 +31,7 @@ exports.main = async (event, context) => {
     .get();
 
   res.data = data;
+  res.sub = sub.total;
   console.log(data);
   if (data.length < num) {
     res.loadAll = true;

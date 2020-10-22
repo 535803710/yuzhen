@@ -1,7 +1,7 @@
 <!-- miniprogram/pages/active/active.wxml -->
 <view class="addActive-btn">
 	<l-btn bind:tap="addActive" wx:if="{{userInfo.scope === 'admin'}}">发布</l-btn>
-	<l-btn bind:tap="sub">订阅动态</l-btn>
+	<l-btn wx:if="{{showSub}}" bind:tap="sub">订阅动态</l-btn>
 </view>
 
 <!-- <l-btn bind:tap="getActive">更新</l-btn> -->
@@ -26,7 +26,7 @@
 			{{item.endTime}}
 		</view>
 		<view class="sub" wx:if="{{true}}">
-			<!-- <l-btn data-item="{{item}}" wx:if="{{item.subscribeAbled && item.status && !item.overdue}}" bindlintap="sub">
+			<!-- <l-btn data-item="{{item}}" wx:if="{{item.subscribeAbled && item.status && item.activeStatus ==='未开始'}}" bind:tap="sub">
 				通知我
 			</l-btn> -->
 

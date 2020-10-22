@@ -5,21 +5,20 @@ const db = cloud.database({
   env: "dev-85arv",
 });
 const subActive = db.collection("subActive");
+const active = db.collection("active");
 
 exports.main = async (event, context) => {
-  const tmplIds = event.tmplIds;
+  const { total } = await active.where({ delete_time: null }).count();
   const wxContext = cloud.getWXContext();
-  subActive.add({
+  const res = await subActive.add({
     data: {
       openid: wxContext.OPENID,
-      tmplIds,
+      page: "/pages/active/active", // 订阅消息卡片点击后会打开小程序的哪个页面
+      templateId: event.templateId, // 订阅消息模板ID
+      subActiveLength: total,
+      done: false, // 消息发送状态设置为 false
     },
   });
 
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
-  };
+  return res;
 };
