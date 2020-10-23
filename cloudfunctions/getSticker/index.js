@@ -15,21 +15,34 @@ exports.main = async (event, context) => {
 
   let res = {
     loadAll: false,
+    success:false
   };
   console.log("event", event);
   const start = +event.start || 0;
   const num = +event.num || 12;
+
   let sort = { create_time: -1 }
   if(Object.keys(event).indexOf('type')!==-1){
     sort = event.type === "hot" ? { favour_num: -1 } : { create_time: -1 };
   }
+
+  let matchParams = {
+    delete_time: null,
+  }
+  let key = event.key ;
+  if(key !== 'all'){
+    matchParams = {
+      delete_time: null,
+      tags : _.all([key])
+    }
+  }
+
+  console.log('matchParams',matchParams);
   try {
     const { list } = await sticker
       .aggregate()
-      .match({
-        delete_time: null,
-      })
       .sort(sort)
+      .match(matchParams)
       .skip(start)
       .limit(num)
       .lookup({
@@ -86,8 +99,9 @@ exports.main = async (event, context) => {
       res.loadAll = true;
     }
     res.data = list;
+    res.success = true
   } catch (err) {
-    res = err;
+    res.errMsg = err;
   }
   return res;
 };

@@ -33,6 +33,15 @@
 		>最热
 		</l-tag>
 	</view>
+	
+	<l-segment bind:linchange="changeTabs" active-key="{{key}}">
+		<l-segment-item tab="全部" key="all" />
+		<l-segment-item tab="美丽" key="美丽" />
+		<l-segment-item tab="可爱" key="可爱" />
+		<l-segment-item tab="沙雕" key="沙雕" />
+		<l-segment-item tab="黑怕" key="黑怕" />
+		<l-segment-item tab="其它" key="其它" />
+	</l-segment>
 	<l-loadmore show="{{isLoading || loadAll}}" type="{{loadAll?'end':'loading'}}">
 		<view slot="content" class="avatar-box">
 			<view class="avatar-image-item" wx:for="{{sticker}}" wx:key="index">
@@ -145,4 +154,6 @@
 		</view>
 	</view>
 </l-popup>
+
+<l-toast/>
 
