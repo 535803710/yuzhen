@@ -1,7 +1,7 @@
 /*
-此文件为开发者工具生成，生成时间: 2020/10/15 下午7:01:12 
+此文件为开发者工具生成，生成时间: 2020/10/22 下午7:27:34 
 
-在 E:\前端项目\云开发\于贞\miniprogram\pages\home\home.wxss 中引入样式
+在 /Users/xiaowodelingdai/Documents/云开发/yuzhen/miniprogram/pages/home/home.wxss 中引入样式
 ```
 @import "./home.skeleton.wxss";
 ```
@@ -11,7 +11,7 @@
 .sk-transparent {
     color: transparent !important;
   }
-.sk-text-34-0000-227 {
+.sk-text-34-0000-848 {
     background-image: linear-gradient(transparent 34.0000%, #EEEEEE 0%, #EEEEEE 66.0000%, transparent 0%) !important;
     background-size: 100% 100.0000rpx;
     position: relative !important;
@@ -23,14 +23,19 @@
     color: transparent !important;
     background-repeat: repeat-y !important;
   }
-.sk-text-14-2857-549 {
+.sk-text-14-2857-696 {
     background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
     background-size: 100% 28.0000rpx;
     position: relative !important;
   }
-.sk-text-14-2857-178 {
+.sk-text-14-2857-823 {
     background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
-    background-size: 100% 28.0000rpx;
+    background-size: 100% 33.6000rpx;
+    position: relative !important;
+  }
+.sk-text-14-2857-515 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 33.6000rpx;
     position: relative !important;
   }
 .sk-image {

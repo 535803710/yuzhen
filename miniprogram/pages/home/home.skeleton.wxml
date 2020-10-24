@@ -1,14 +1,14 @@
 <!--
-此文件为开发者工具生成，生成时间: 2020/10/15 下午7:01:12 
+此文件为开发者工具生成，生成时间: 2020/10/22 下午7:27:34 
 使用方法：
-在 E:\前端项目\云开发\于贞\miniprogram\pages\home\home.wxml 引入模板
+在 /Users/xiaowodelingdai/Documents/云开发/yuzhen/miniprogram/pages/home/home.wxml 引入模板
 
 ```
 <import src="home.skeleton.wxml"/>
 <template is="skeleton" wx-if="{{loading}}" />
 ```
 
-在 E:\前端项目\云开发\于贞\miniprogram\pages\home\home.wxss 中引入样式
+在 /Users/xiaowodelingdai/Documents/云开发/yuzhen/miniprogram/pages/home/home.wxss 中引入样式
 ```
 @import "./home.skeleton.wxss";
 ```
@@ -18,102 +18,41 @@
 <template name="skeleton">
   <view class="sk-container">
     <view class="container">
-      <swiper class="swiper" current="0" autoplay="false">
-        <swiper-item class="swiper-item" item-id="true" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
-          <image mode="widthFix" style="height: 499.549px;" class="sk-image"></image>
+      <swiper circular="true" autoplay="false" class="swiper" indicator-active-color="#ffffff" indicator-dots="true" current="0">
+        <swiper-item class="swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+          <image mode="widthFix" style="height: 375.38px;" class="sk-image"></image>
         </swiper-item>
       </swiper>
-      <view class="title sk-transparent sk-text-34-0000-227 sk-text" style="background-position-x: 50%;">/ 贞漂亮的表情包 /</view>
-      <view class="desc sk-transparent sk-text-14-2857-549 sk-text" style="background-position-x: 50%;">目前为内测版本，图片还在等待大家上传</view>
-      <view class="desc sk-transparent sk-text-14-2857-178 sk-text" style="background-position-x: 50%;">❤ 希望土豆粉们能支持，并且遵守相关规定 ❤</view>
+      <view class="title sk-transparent sk-text-34-0000-848 sk-text" style="background-position-x: 50%;">/ 贞漂亮的表情包 /</view>
+      <view class="desc sk-transparent sk-text-14-2857-696 sk-text" style="background-position-x: 50%;">❤ 希望土豆粉们能支持，并且遵守相关规定 ❤</view>
+      <view class="chooseType">
+        <view is="miniprogram_npm/lin-ui/tag/index" class="chooseType-tag">
+          <view style="display:flex">
+            <view class="tag-index--l-tag tag-index--l-tag-touch tag-index--l-tag-medium  tag-index--l-tag-medium-circle" style="background-color:;color:">
+              <view class="tag-index--content sk-transparent sk-text-14-2857-823 sk-text" style="true">最新
+              </view>
+            </view>
+          </view>
+        </view>
+        <view is="miniprogram_npm/lin-ui/tag/index" class="chooseType-tag">
+          <view style="display:flex">
+            <view class="tag-index--l-tag tag-index--l-tag-touch tag-index--l-tag-plain-medium  tag-index--l-tag-plain tag-index--l-tag-medium-circle" style="border: none;">
+              <view class="tag-index--content sk-transparent sk-text-14-2857-515 sk-text" style="true">最热
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
       <view is="miniprogram_npm/lin-ui/loadmore/index">
         <view class="avatar-box">
           <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="c4747cd45f88222e00128d1062888b68" data-index="0" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
+            <image class="avatar-image sk-image" data-id="c4747cd45f916920001909ab5e55f369" data-index="0" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
           </view>
           <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="d9ea4cfd5f8821f500153a2e6724f273" data-index="1" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
+            <image class="avatar-image sk-image" data-id="c4747cd45f9112cd0018a4641548e9a2" data-index="1" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
           </view>
           <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="d9ea4cfd5f8801240015117b64738ec0" data-index="2" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="c4747cd45f88005000126c983e3431df" data-index="3" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="8f29e52a5f8800250015cea63a3bf726" data-index="4" data-url="[object Object],[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="album sk-image">
-              <image class="sk-image"></image>
-            </view>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="d9ea4cfd5f87fcd900150de34bb8cd8f" data-index="5" data-url="[object Object],[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="album sk-image">
-              <image class="sk-image"></image>
-            </view>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="8f29e52a5f87f7670015c5c311c51887" data-index="6" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="2c9645925f87f7590017b0d3607bd4c8" data-index="7" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="d9ea4cfd5f87f74c0015081b5be708b5" data-index="8" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="c4747cd45f87f742001264b30bc9b765" data-index="9" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="c4747cd45f87f6e80012647228e8b262" data-index="10" data-url="[object Object],[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="album sk-image">
-              <image class="sk-image"></image>
-            </view>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="d9ea4cfd5f87f42d001505c357ffa69a" data-index="11" data-url="[object Object],[object Object],[object Object]" lazy-load="true" mode="aspectFill"></image>
-            <view class="album sk-image">
-              <image class="sk-image"></image>
-            </view>
-            <view class="like">
-              <image class="sk-image"></image>
-            </view>
-          </view>
-          <view class="avatar-image-item">
-            <image class="avatar-image sk-image" data-id="112557505f87eae300182a283c732231" data-index="12" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
+            <image class="avatar-image sk-image" data-id="c4747cd45f908adc0018438a5c910f94" data-index="2" data-url="[object Object]" lazy-load="true" mode="aspectFill"></image>
           </view>
         </view>
       </view>

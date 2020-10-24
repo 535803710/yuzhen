@@ -21,7 +21,7 @@ exports.main = async (event, context) => {
     .get();
 
   console.log("subUser", subUser);
-  const lastActive = await active.skip(total - 1).get();
+  const lastActive = await active.where({delete_time:null}).skip(total - 1).get();
   for (let i = 0; i < subUser.data.length; i++) {
     const el = subUser.data[i];
     const content = lastActive.data[0].content.substring(0, 15) + "...";

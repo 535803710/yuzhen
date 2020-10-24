@@ -21,7 +21,7 @@
 		<l-list
 		 title="版本号"
 		 icon="edit"
-		 right-desc="v0.0.1"
+		 right-desc="v0.1.9"
 		 is-link="{{false}}"
 		/>
 		<l-list
