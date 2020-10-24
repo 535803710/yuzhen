@@ -21,7 +21,7 @@
 		<l-list
 		 title="版本号"
 		 icon="edit"
-		 right-desc="v0.1.9"
+		 right-desc="v0.2.0"
 		 is-link="{{false}}"
 		/>
 		<l-list
@@ -33,14 +33,15 @@
 		<l-list
 		 title="联系作者"
 		 icon="phone"
-		 right-desc="yuzhenclub@163.com"
+		 right-desc="xiaowo_l"
 		 is-link="{{false}}"
 		/>
-  <l-list title="开启上传" wx:if="{{switch}}">
-    <view slot="right-section">
-          <switch checked="{{config}}" bindchange="uploadSwitch" />
-    </view>
-   </l-list>
+
+		<l-list title="开启上传" wx:if="{{switch}}">
+			<view slot="right-section">
+				<switch checked="{{config}}" bindchange="uploadSwitch" />
+			</view>
+		</l-list>
 
 		<view class="collapse-box">
 			<l-collapse expand-item-id='{{showCollapse}}'>
@@ -57,14 +58,19 @@
 					<view>*图片画廊</view>
 					<view>*热度排行</view>
 					<view>*于贞动态</view>
+					<view>*订阅动态</view>
+					<view>*图片分类</view>
 					<view>❤ 如果你有什么好想法可以联系作者 ❤</view>
 				</l-collapse-item>
 				<l-collapse-item l-title-class="collapseTitle" title="后续功能" item-id="1">
-					<view>*订阅动态</view>
 					<view>*应援头像</view>
-					<view>*分类搜索</view>
 					<view>*用户资料填写</view>
 					<view>❤ 如果你有什么好想法可以联系 ❤</view>
+					<view>$ 该程序由个人开发运营维护 $</view>
+					<view>$ 如果有金主爸爸愿意赞助请联系我 $</view>
+					<view>
+						<image src="cloud://dev-85arv.6465-dev-85arv-1303912966/avatar/支付.png" mode="widthFix" />
+					</view>
 				</l-collapse-item>
 			</l-collapse>
 		</view>

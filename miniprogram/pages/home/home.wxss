@@ -204,3 +204,7 @@
 .chooseType-tag{
   margin-left:20rpx;
 }
+
+.segment{
+  z-index: 99;
+}

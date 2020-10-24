@@ -52,7 +52,9 @@ Page({
     showUpload: false,
     clearImgs: false,
 
-    stickerType:'new'
+    stickerType:'new',
+    key:'all',
+    scrollTop: undefined
   },
 
   async onLoad(options) {
@@ -112,10 +114,14 @@ Page({
         name: "getSticker",
         data: {
           start,
-          type:this.data.stickerType
+          type:this.data.stickerType,
+          key:this.data.key
         },
       });
       console.log(result);
+      if(!result.success){
+        util.showToast('道路拥堵 请稍后再试')
+      }
       if (result.loadAll) {
         this.setData({
           loadAll: result.loadAll,
@@ -127,9 +133,11 @@ Page({
       });
     } catch (error) {
     } finally {
-      this.setData({
-        isLoading: false,
-      });
+      setTimeout(() => {
+        this.setData({
+          isLoading: false,
+        });
+      }, 1000);
     }
   },
   onHide: function () {},
@@ -615,14 +623,42 @@ Page({
     })
     this.getData(0,true)
   },
-  chooseNew(){
+  async chooseNew(){
     if(this.data.stickerType === 'new'){
       return
     }
     this.setData({
       stickerType:'new'
     })
-    this.getData(0,true)
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    });
+    await this.getData(0,true)
+    wx.hideLoading();
 
   },
+
+  async changeTabs(e){
+    if(this.data.isLoading || this.data.key === e.detail.activeKey){
+      return 
+    }
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    });
+    console.log(e);
+    const key = e.detail.activeKey
+    this.setData({
+      key
+    })
+    await this.getData(0,true)
+    wx.hideLoading();
+  },
+
+  onPageScroll(res) {
+    this.setData({
+      scrollTop: res.scrollTop
+    })
+  }
 });
