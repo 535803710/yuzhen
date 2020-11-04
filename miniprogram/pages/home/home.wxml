@@ -1,6 +1,6 @@
 <!-- index.wxml -->
-<import src="home.skeleton.wxml" />
-<template is="skeleton" wx-if="{{imgLoading && !loadAll}}" />
+<!-- <import src="home.skeleton.wxml" />
+<template is="skeleton" wx-if="{{imgLoading && !loadAll}}" /> -->
 <view class="container">
 	<!-- <button type="primary" bindtap="demoTap">demo</button> -->
 	<swiper
@@ -33,7 +33,7 @@
 		>最热
 		</l-tag>
 	</view>
-	
+
 	<l-segment bind:linchange="changeTabs" active-key="{{key}}">
 		<l-segment-item tab="全部" key="all" />
 		<l-segment-item tab="美丽" key="美丽" />
@@ -44,18 +44,22 @@
 	</l-segment>
 	<l-loadmore show="{{isLoading || loadAll}}" type="{{loadAll?'end':'loading'}}">
 		<view slot="content" class="avatar-box">
-			<view class="avatar-image-item" wx:for="{{sticker}}" wx:key="index">
+			<view
+			 class="avatar-image-item"
+			 wx:for="{{sticker}}"
+			 wx:key="index"
+			 data-url="{{item.urls}}"
+			 data-id="{{item._id}}"
+			 data-index="{{index}}"
+			 bindlongpress="likeImage"
+			>
 				<view wx:if="{{item.delete}}" class="deleteImg" />
 				<image
 				 class="avatar-image"
 				 src="{{item.urls[0].fileID}}"
 				 mode="aspectFill"
-				 data-url="{{item.urls}}"
-				 data-id="{{item._id}}"
-				 data-index="{{index}}"
 				 bind:tap="view"
 				 lazy-load="{{true}}"
-				 bindlongpress="likeImage"
 				 bindload="imgLoad"
 				/>
 				<view
