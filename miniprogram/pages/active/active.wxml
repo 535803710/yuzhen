@@ -9,6 +9,7 @@
 	<l-card
 	 type="avatar"
 	 image="/images/avatar.jpg"
+	 l-title-class="card-title"
 	 title="{{item.name}}"
 	 describe="发布于：{{item.create_time}}"
 	>

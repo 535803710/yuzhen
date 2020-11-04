@@ -8,6 +8,10 @@ page{
     margin-top: 30rpx;
 }
 
+.card-title{
+    max-width: 520rpx;
+}
+
 .content{
     margin: 10rpx;
     font-size: 28rpx;

@@ -11,6 +11,11 @@
   padding: 2rpx;
 }
 
+.big-img{
+width: 495rpx !important;
+height:  495rpx !important;
+}
+
 .avatar-image-item {
   width: 245rpx;
   height: 245rpx;
@@ -18,6 +23,8 @@
   margin: 2rpx;
   position: relative;
 }
+
+
 .avatar-image {
   width: 250rpx;
   height: 250rpx;

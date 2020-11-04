@@ -17,7 +17,11 @@
 	</content-card> -->
 
 	<view>
-		<view class="title">- 贞的喜欢 -</view>
+		<view class="title">
+			<image src="../../images/icon/like_fill.png" />
+			贞的喜欢
+			<image src="../../images/icon/like_fill.png" />
+		</view>
 		<view slot="content" class="sticker-box">
 			<view
 			 bindlongpress="likeImage"
@@ -91,8 +95,10 @@
 					<view>❤ 如果你有什么好想法可以联系 ❤</view>
 					<view>$ 该程序由个人开发运营维护 $</view>
 					<view>$ 如果有金主爸爸愿意赞助请联系我 $</view>
+					<view>$ 最大赞助金额为10元 $</view>
+					<view>$ 所有赞助将全部用于后期维护 $</view>
 					<view>
-						<image src="cloud://dev-85arv.6465-dev-85arv-1303912966/avatar/支付.png" mode="widthFix" />
+						<image style="width:200rpx;height:200rpx" src="cloud://dev-85arv.6465-dev-85arv-1303912966/avatar/WechatIMG58.jpeg" mode="widthFix" />
 					</view>
 				</l-collapse-item>
 			</l-collapse>
