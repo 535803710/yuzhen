@@ -1,30 +1,115 @@
-.avatar{
-    margin-top: 50rpx;
-    padding: 30rpx 50rpx;
-    border-bottom: 1rpx solid rgb(226, 226, 226);
+.avatar {
+  margin-top: 50rpx;
+  padding: 30rpx 50rpx;
+  border-bottom: 1rpx solid rgb(226, 226, 226);
 }
-.avatar-box{
+.avatar-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  height: 200rpx;
+  align-items: center;
+}
+
+.list {
+  margin-top: 50rpx;
+  padding: 0 50rpx;
+}
+
+.collapseTitle {
+  font-size: 26rpx !important;
+}
+
+.collapse-box {
+  margin-top: 50rpx;
+}
+
+.sticker-box {
+  display: flex;
+  /* padding: 10rpx 0; */
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  overflow: auto;
+  padding: 2rpx;
+}
+
+.avatar-image-item {
+  width: 245rpx;
+  height: 245rpx;
+  overflow: hidden;
+  margin: 2rpx;
+  position: relative;
+}
+.avatar-image {
+  width: 250rpx;
+  height: 250rpx;
+  overflow: hidden;
+}
+
+.title {
+  color:#333;
+  text-align: center;
+  margin: 30rpx 0;
+}
+
+.loadMore {
+    margin-top: 30rpx;
+    width: 100%;
+    color: #888;
+    font-size: 28rpx;
+    text-align: center;
+}
+
+.album {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10rpx;
+  display: flex;
+  align-items: center;
+  /* border-bottom-left-radius: 50%; */
+  background-image: linear-gradient(
+    to top right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.644)
+  );
+  /* filter: blur(20rpx) */
+}
+
+.album image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.like{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10rpx;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-
-.login{
-    display: flex;
-    justify-content: center;
-    height: 200rpx;
-    align-items: center;
-}
-
-.list{
-    margin-top: 50rpx;
-    padding:  0 50rpx;
-}
-
-.collapseTitle{
-    font-size: 26rpx !important;
-}
-
-.collapse-box{
-    margin-top: 50rpx;
-}
+    background-image: linear-gradient(
+      to top right,
+      rgba(0, 0, 0, 0.644),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0)
+    );
+  }
+  .like image{
+    width: 40rpx;
+    height: 40rpx;
+  }
+  
+  .like-text{
+    text-align: center;
+    color: #fff;
+    font-size: 24rpx;
+    margin-left: 5rpx;
+  }
+  

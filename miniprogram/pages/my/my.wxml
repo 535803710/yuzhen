@@ -3,7 +3,7 @@
 	<view class="avatar">
 		<view wx:if="{{login}}" class="avatar-box">
 			<j-avatar open-data="{{['userAvatarUrl','userNickName']}}" />
-			<l-icon name="right" size="30" />
+			<!-- <l-icon name="right" size="30" /> -->
 		</view>
 		<view wx:else class="login">
 			<j-btn open-type="getUserInfo" bind:getuserinfo="getUserInfo">登录</j-btn>
@@ -16,24 +16,47 @@
 		</view>
 	</content-card> -->
 
+	<view>
+		<view class="title">- 贞的喜欢 -</view>
+		<view slot="content" class="sticker-box">
+			<view
+			 bindlongpress="likeImage"
+			 data-url="{{item.sticker[0].urls}}"
+			 data-id="{{item.sticker[0]._id}}"
+			 data-index="{{index}}"
+			 class="avatar-image-item"
+			 wx:for="{{mySticker}}"
+			 wx:key="index"
+			>
+				<image
+				 class="avatar-image"
+				 src="{{item.sticker[0].urls[0].fileID}}"
+				 mode="aspectFill"
+				 bind:tap="view"
+				 lazy-load="{{true}}"
+				 bindload="imgLoad"
+				/>
+
+				<view wx:if="{{item.sticker[0].urls.length >1}}" class="album">
+					<image src="../../images/album.png" />
+				</view>
+				<view class="like" bind:tap="showLikeRule">
+					<image wx:if="{{item.like}}" src="../../images/icon/like_fill.png" />
+					<image wx:else src="../../images/icon/like.png" />
+					<view class="like-text">{{item.sticker[0].favour_num>999?"999+":item.sticker[0].favour_num}}</view>
+				</view>
+			</view>
+			<view class="loadMore" wx:if="{{loadAll}}">{{mySticker.length>0?'已经没有更多了':'还没有贞喜欢的图片'}}</view>
+			<view class="loadMore" wx:else bind:tap="getMyFavour">点击加载更多</view>
+		</view>
+
+	</view>
 	<view class="list">
 
 		<l-list
-		 title="版本号"
-		 icon="edit"
-		 right-desc="v0.2.0"
-		 is-link="{{false}}"
-		/>
-		<l-list
-		 title="作者"
-		 icon="user"
-		 right-desc="小蜗"
-		 is-link="{{false}}"
-		/>
-		<l-list
 		 title="联系作者"
-		 icon="phone"
-		 right-desc="xiaowo_l"
+		 icon="user"
+		 right-desc="小蜗 wx:xiaowo_l"
 		 is-link="{{false}}"
 		/>
 

@@ -1,3 +1,6 @@
+import { Util } from "../../util/util2";
+const util = new Util();
+
 const app = getApp();
 
 Page({
@@ -9,9 +12,10 @@ Page({
     requestResult: "",
     login: false,
     showCollapse: ["1"],
+    mySticker: [],
   },
 
-  onLoad: function () {
+  async onLoad() {
     if (!wx.cloud) {
       wx.redirectTo({
         url: "../chooseLib/chooseLib",
@@ -43,18 +47,34 @@ Page({
         }
       },
     });
+
+    await this.getMyFavour();
   },
 
   async onShow() {
-    console.log(Object.keys(app.globalData.userInfo).indexOf("nickName") !== -1);
+    console.log(
+      Object.keys(app.globalData.userInfo).indexOf("nickName") !== -1
+    );
     this.setData({
       login: Object.keys(app.globalData.userInfo).indexOf("nickName") !== -1,
     });
-    await this.getConfig()
+    await this.getConfig();
     this.setData({
-      switch:app.globalData.userInfo.openid === "okIoi5exrIzma3K-ZVWCSvAWo9FA"
-    })
+      switch: app.globalData.userInfo.openid === "okIoi5exrIzma3K-ZVWCSvAWo9FA",
+    });
     console.log(app.globalData.userInfo);
+  },
+
+  async onPullDownRefresh(e) {
+    console.log(e);
+    wx.showLoading({
+      title: "加载中...",
+      mask: true,
+    });
+    this.data.mySticker = []
+    this.data.loadAll = false
+    await this.getMyFavour();
+    wx.hideLoading();
   },
 
   onGetUserInfo: function (e) {
@@ -116,23 +136,80 @@ Page({
     });
   },
 
-  async uploadSwitch(e){
+  async uploadSwitch(e) {
     console.log(e);
     await wx.cloud.callFunction({
-      name:'getConfig',
-      data:{
-        config:e.detail.value
-      }
-    })
+      name: "getConfig",
+      data: {
+        config: e.detail.value,
+      },
+    });
   },
 
-  async getConfig(){
-    const {result} =await  wx.cloud.callFunction({
-      name:'getConfig'
-    })
+  async getConfig() {
+    const { result } = await wx.cloud.callFunction({
+      name: "getConfig",
+    });
     this.setData({
-      config :result.data
-    })
+      config: result.data,
+    });
+  },
 
-  }
+  async getMyFavour() {
+    if (this.data.loadAll) {
+      return;
+    }
+    wx.showLoading({
+      title: "加载中...",
+      mask: true,
+    });
+    const { result } = await wx.cloud.callFunction({
+      name: "getMyFavour",
+      data: {
+        start: this.data.mySticker.length,
+      },
+    });
+    let mySticker = this.data.mySticker.concat(result.data);
+    this.setData({
+      mySticker,
+      loadAll: result.loadAll,
+    });
+    wx.hideLoading();
+  },
+
+  async likeImage(e) {
+    console.log(e);
+    wx.showLoading({
+      title: "加载中...",
+      mask: true,
+    });
+    const id = util.getDataSet(e, "id");
+    const index = util.getDataSet(e, "index");
+    console.log(id);
+    const { result } = await wx.cloud.callFunction({
+      name: "like",
+      data: {
+        type: "like",
+        id,
+      },
+    });
+    let title = "";
+    if (result.success) {
+      title = "点赞成功❤";
+    } else {
+      title = "取消点赞";
+    }
+    wx.showToast({
+      title,
+      icon: "none",
+      duration: 1500,
+      mask: false,
+    });
+    const num = +this.data.mySticker[index].sticker[0].favour_num;
+    console.log('num',num);
+    this.setData({
+      [`mySticker[${index}].like`]: !this.data.mySticker[index].like,
+      [`mySticker[${index}].sticker[0].favour_num`]: result.success ? num + 1 : num - 1,
+    });
+  },
 });

@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh":true,
   "usingComponents": {
     "j-btn":"/miniprogram_npm/lin-ui/button/index",
     "j-avatar":"/miniprogram_npm/lin-ui/avatar/index",
