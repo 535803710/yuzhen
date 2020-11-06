@@ -97,7 +97,7 @@
 					<view>$ 如果有金主爸爸愿意赞助请联系我 $</view>
 					<view>$ 最大赞助金额为10元 $</view>
 					<view>$ 所有赞助将全部用于后期维护 $</view>
-					<view>
+					<view wx:if="{{config}}">
 						<image style="width:200rpx;height:200rpx" src="cloud://dev-85arv.6465-dev-85arv-1303912966/avatar/WechatIMG58.jpeg" mode="widthFix" />
 					</view>
 				</l-collapse-item>
