@@ -12,6 +12,7 @@ Page({
     imgLoading: true,
     userInfo: "",
     isRefersh: false,
+    pageNum: 0,
 
     tags: [
       {
@@ -52,9 +53,9 @@ Page({
     showUpload: false,
     clearImgs: false,
 
-    stickerType:'new',
-    key:'all',
-    scrollTop: undefined
+    stickerType: "new",
+    key: "all",
+    scrollTop: undefined,
   },
 
   async onLoad(options) {
@@ -105,29 +106,37 @@ Page({
         loadAll: false,
       });
     }
-    this.setData({
-      isLoading: true,
-    });
+    if(this.data.isLoading){
+      return
+    }
     try {
+      this.setData({
+        isLoading: true,
+      });
       let sticker = this.data.sticker;
       const { result } = await wx.cloud.callFunction({
         name: "getSticker",
         data: {
+          openid:this.data.userInfo.openid,
           start,
-          type:this.data.stickerType,
-          key:this.data.key
+          num: 9,
+          type: this.data.stickerType,
+          key: this.data.key,
         },
       });
       console.log(result);
-      if(!result.success){
-        util.showToast('道路拥堵 请稍后再试')
+      if (!result.success) {
+        util.showToast("慢点慢点,你刷的太快了");
       }
       if (result.loadAll) {
         this.setData({
           loadAll: result.loadAll,
         });
       }
-      sticker = sticker.concat(result.data);
+      this.data.pageNum = this.data.pageNum + 1;
+      const resArr = this._processSticker(result.data, this.data.pageNum);
+      sticker = sticker.concat(resArr);
+
       this.setData({
         sticker,
       });
@@ -143,7 +152,6 @@ Page({
   onHide: function () {},
   onUnload: function () {},
   async onPullDownRefresh(e) {
-    console.log(e);
     wx.showLoading({
       title: "加载中...",
       mask: true,
@@ -152,7 +160,7 @@ Page({
     wx.hideLoading();
   },
   onReachBottom() {
-    const start = this.data.sticker.length;
+    const start = (this.data.sticker.length / 2) * 9;
     if (!this.data.loadAll) {
       this.getData(start);
     }
@@ -164,6 +172,31 @@ Page({
       imageUrl: "/images/share.jpg",
     };
   },
+
+  _processSticker(array, pageNum) {
+    console.log("_processSticker-into", array);
+    let resArr = [];
+    let firstArr = [];
+    let secondArr = [];
+    for (let i = 0; i < array.length; i++) {
+      const el = array[i];
+      if (i < 3) {
+        firstArr.push(el);
+      } else {
+        secondArr.push(el);
+      }
+    }
+    if (pageNum % 2 === 0) {
+      firstArr[0].big = true;
+    } else {
+      if (firstArr.length === 3) {
+        firstArr[2].big = true;
+      }
+    }
+    resArr.push(firstArr);
+    resArr.push(secondArr);
+    return resArr;
+  },
   demoTap() {
     wx.navigateTo({
       url: "../index/index",
@@ -171,6 +204,7 @@ Page({
   },
 
   async likeImage(e) {
+    console.log(e);
     const res = this._checkUserInfo();
     if (!res) {
       return;
@@ -180,8 +214,11 @@ Page({
       mask: true,
     });
     const id = util.getDataSet(e, "id");
-    const index = util.getDataSet(e, "index");
+    const ondeindex = util.getDataSet(e, "ondeindex");
+    const twoindex = util.getDataSet(e, "twoindex");
     console.log(id);
+    console.log(ondeindex);
+    console.log(twoindex);
     const { result } = await wx.cloud.callFunction({
       name: "like",
       data: {
@@ -195,16 +232,18 @@ Page({
     } else {
       title = "取消点赞";
     }
+    wx.hideLoading();
     wx.showToast({
       title,
       icon: "none",
       duration: 1500,
       mask: false,
     });
-    const num = +this.data.sticker[index].favour_num;
+    const num = +this.data.sticker[ondeindex][twoindex].favour_num;
+    console.log(num);
     this.setData({
-      [`sticker[${index}].like`]: result.success ? [{ _id: id }] : [],
-      [`sticker[${index}].favour_num`]: result.success ? num + 1 : num - 1,
+      [`sticker[${ondeindex}][${twoindex}].like`]: result.success ? [{ _id: id }] : [],
+      [`sticker[${ondeindex}][${twoindex}].favour_num`]: result.success ? num + 1 : num - 1,
     });
   },
 
@@ -254,6 +293,14 @@ Page({
       urls,
     });
   },
+  
+  viewItem(e){
+    const url = util.getDataSet(e, "url");
+    wx.previewImage({
+      current: 0,
+      urls:[url],
+    });
+  },
 
   async getExamination() {
     const result = await wx.cloud.callFunction({
@@ -297,10 +344,18 @@ Page({
     });
   },
 
-  async delete(e) {
-    const index = util.getDataSet(e, "index");
+  showDelete(e){
     const item = util.getDataSet(e, "item");
-    console.log(index);
+    this.setData({
+      showDelete:true,
+      deleteItem:item
+    })
+  },
+  async delete(e) {
+    console.log(e);
+    const ondeindex = util.getDataSet(e, "ondeindex");
+    const twoindex = util.getDataSet(e, "twoindex");
+    const item = util.getDataSet(e, "item");
     const res = await wx.cloud.callFunction({
       name: "updateSticker",
       data: {
@@ -308,14 +363,14 @@ Page({
         id: item._id,
       },
     });
-    if (res.errMsg === "cloud.callFunction:ok") {
+    if (true || res.errMsg === "cloud.callFunction:ok") {
       wx.showToast({
         title: "删除成功",
         icon: "none",
         duration: 1500,
         mask: false,
       });
-      const a = `sticker[${index}].delete`;
+      const a = `sticker[${ondeindex}][${twoindex}].delete`;
       this.setData({
         [a]: true,
       });
@@ -614,51 +669,50 @@ Page({
     console.log(filePath);
   },
 
-  chooseHot(){
-    if(this.data.stickerType === 'hot'){
-      return
+  chooseHot() {
+    if (this.data.stickerType === "hot") {
+      return;
     }
     this.setData({
-      stickerType:'hot'
-    })
-    this.getData(0,true)
+      stickerType: "hot",
+    });
+    this.getData(0, true);
   },
-  async chooseNew(){
-    if(this.data.stickerType === 'new'){
-      return
+  async chooseNew() {
+    if (this.data.stickerType === "new") {
+      return;
     }
     this.setData({
-      stickerType:'new'
-    })
+      stickerType: "new",
+    });
     wx.showLoading({
-      title: '加载中...',
+      title: "加载中...",
       mask: true,
     });
-    await this.getData(0,true)
+    await this.getData(0, true);
     wx.hideLoading();
-
   },
 
-  async changeTabs(e){
-    if(this.data.isLoading || this.data.key === e.detail.activeKey){
-      return 
+  async changeTabs(e) {
+    if (this.data.isLoading || this.data.key === e.detail.activeKey) {
+      return;
     }
     wx.showLoading({
-      title: '加载中...',
+      title: "加载中...",
       mask: true,
     });
     console.log(e);
-    const key = e.detail.activeKey
+    const key = e.detail.activeKey;
     this.setData({
-      key
-    })
-    await this.getData(0,true)
+      key,
+    });
+    await this.getData(0, true);
     wx.hideLoading();
   },
 
   onPageScroll(res) {
     this.setData({
-      scrollTop: res.scrollTop
-    })
-  }
+      scrollTop: res.scrollTop,
+    });
+  },
 });

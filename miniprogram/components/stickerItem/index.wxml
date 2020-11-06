@@ -1,0 +1,29 @@
+<view wx:if="{{item.delete}}" class="deleteImg" />
+
+<image
+ class="avatar-image {{big?'big-img':''}}"
+ src="{{item.urls[0].fileID}}"
+ data-url="{{item.urls}}"
+ mode="aspectFill"
+ bind:tap="view"
+ lazy-load="{{true}}"
+ bindload="imgLoad"
+/>
+<view
+ class="delete"
+ data-item="{{item}}"
+ data-index='{{stickerindex}}'
+ wx:if="{{userInfo.scope === 'admin'}}"
+ bind:tap="delete"
+>
+	<l-icon name="delete" color="#ffffff" />
+</view>
+<view wx:if="{{item.urls.length >1}}" class="album">
+	<image src="../../images/album.png" />
+</view>
+<view class="like" bind:tap="showLikeRule">
+	<image wx:if="{{item.like.length !== 0}}" src="../../images/icon/like_fill.png" />
+	<image wx:else src="../../images/icon/like.png" />
+	<view class="like-text">{{item.favour_num>999?"999+":item.favour_num}}</view>
+</view>
+

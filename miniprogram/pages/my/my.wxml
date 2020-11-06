@@ -25,7 +25,6 @@
 		<view slot="content" class="sticker-box">
 			<view
 			 bindlongpress="likeImage"
-			 data-url="{{item.sticker[0].urls}}"
 			 data-id="{{item.sticker[0]._id}}"
 			 data-index="{{index}}"
 			 class="avatar-image-item"
@@ -36,6 +35,7 @@
 				 class="avatar-image"
 				 src="{{item.sticker[0].urls[0].fileID}}"
 				 mode="aspectFill"
+				 data-url="{{item.sticker[0].urls}}"
 				 bind:tap="view"
 				 lazy-load="{{true}}"
 				 bindload="imgLoad"
@@ -60,7 +60,7 @@
 		<l-list
 		 title="联系作者"
 		 icon="user"
-		 right-desc="小蜗 wx:xiaowo_l"
+		 right-desc="wx:xiaowo_l"
 		 is-link="{{false}}"
 		/>
 

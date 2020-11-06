@@ -11,34 +11,35 @@ const _ = db.command;
 const $ = db.command.aggregate;
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext();
-
   let res = {
     loadAll: false,
-    success:false
+    success: false,
   };
   console.log("event", event);
   const start = +event.start || 0;
-  const num = +event.num || 12;
+  const num = +event.num || 9;
 
-  let sort = { create_time: -1 }
-  if(Object.keys(event).indexOf('type')!==-1){
+  let sort = { create_time: -1 };
+  if (Object.keys(event).indexOf("type") !== -1) {
     sort = event.type === "hot" ? { favour_num: -1 } : { create_time: -1 };
   }
 
   let matchParams = {
     delete_time: null,
-  }
-  let key = event.key ;
-  if(key !== 'all'){
+  };
+  let key = event.key;
+  if (key !== "all") {
     matchParams = {
       delete_time: null,
-      tags : _.all([key])
-    }
+      tags: _.all([key]),
+    };
   }
 
-  console.log('matchParams',matchParams);
+  console.log("matchParams", matchParams);
   try {
+    const wxContext = cloud.getWXContext();
+    console.log("wxContext", wxContext);
+    const openid = wxContext.OPENID|| event.openid
     const { list } = await sticker
       .aggregate()
       .sort(sort)
@@ -49,7 +50,7 @@ exports.main = async (event, context) => {
         from: "user_sticker",
         let: {
           sticker_id: "$_id",
-          openid: wxContext.OPENID,
+          openid,
         },
         pipeline: $.pipeline()
           .match(
@@ -67,7 +68,7 @@ exports.main = async (event, context) => {
           .project({
             _id: 1,
             sticker_id: 1,
-            openid: 1,
+            // openid: 1,
           })
           .done(),
         as: "like",
@@ -95,11 +96,11 @@ exports.main = async (event, context) => {
     //   .limit(num)
     //   .get();
     // console.log(data);
-    if (list.length !== 12) {
+    if (list.length !== 9) {
       res.loadAll = true;
     }
     res.data = list;
-    res.success = true
+    res.success = true;
   } catch (err) {
     res.errMsg = err;
   }

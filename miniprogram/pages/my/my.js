@@ -212,4 +212,17 @@ Page({
       [`mySticker[${index}].sticker[0].favour_num`]: result.success ? num + 1 : num - 1,
     });
   },
+
+  view(e) {
+    const url = util.getDataSet(e, "url");
+    console.log(url);
+    let urls = [];
+    url.forEach((el) => {
+      urls.push(el.fileID);
+    });
+    wx.previewImage({
+      current: 0,
+      urls,
+    });
+  },
 });

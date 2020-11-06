@@ -44,7 +44,156 @@
 	</l-segment>
 	<l-loadmore show="{{isLoading || loadAll}}" type="{{loadAll?'end':'loading'}}">
 		<view slot="content" class="avatar-box">
-			<view
+			<view wx:for="{{sticker}}" class="{{item.length<4?'threeRow':'sixRow'}}" wx:key="index">
+				<view wx:if="{{item.length<4}}" class="threeRow">
+					<block wx:if="{{item[2].big}}">
+						<view class="threeRow-left">
+							<view
+							 class="avatar-image-item"
+							 wx:for-index="twoindex"
+							 data-id="{{item[0]._id}}"
+							 data-ondeindex="{{index}}"
+							 data-twoindex="{{0}}"
+							 bindlongpress="likeImage"
+							>
+								<sticker-item
+								 data-ondeindex="{{index}}"
+								 data-twoindex="{{0}}"
+								 bind:delete='showDelete'
+								 userInfo="{{userInfo}}"
+								 type="six"
+								 data-item="{{item[0]}}"
+								 item="{{item[0]}}"
+								/>
+							</view>
+							<view
+							 class="avatar-image-item"
+							 wx:for-index="twoindex"
+							 data-id="{{item[1]._id}}"
+							 data-ondeindex="{{index}}"
+							 data-twoindex="{{1}}"
+							 bindlongpress="likeImage"
+							>
+								<sticker-item
+								 data-ondeindex="{{index}}"
+								 data-twoindex="{{1}}"
+								 bind:delete='showDelete'
+								 userInfo="{{userInfo}}"
+								 type="six"
+								 data-item="{{item[1]}}"
+								 item="{{item[1]}}"
+								/>
+							</view>
+						</view>
+						<view class="threeRow-right">
+							<view
+							 class="avatar-image-item-big"
+							 wx:for-index="twoindex"
+							 data-id="{{item[2]._id}}"
+							 data-ondeindex="{{index}}"
+							 data-twoindex="{{2}}"
+							 bindlongpress="likeImage"
+							>
+								<sticker-item
+								 data-ondeindex="{{index}}"
+								 data-twoindex="{{2}}"
+								 bind:delete='showDelete'
+								 userInfo="{{userInfo}}"
+								 big="{{true}}"
+								 data-item="{{item[2]}}"
+								 item="{{item[2]}}"
+								/>
+							</view>
+						</view>
+					</block>
+					<block wx:if="{{item[0].big}}">
+						<view class="threeRow-right">
+							<view
+							 class="avatar-image-item-big"
+							 wx:for-index="twoindex"
+							 data-id="{{item[0]._id}}"
+							 data-ondeindex="{{index}}"
+							 data-twoindex="{{0}}"
+							 bindlongpress="likeImage"
+							>
+								<sticker-item
+								 data-ondeindex="{{index}}"
+								 data-twoindex="{{0}}"
+								 bind:delete='showDelete'
+								 userInfo="{{userInfo}}"
+								 big="{{true}}"
+								 data-item="{{item[0]}}"
+								 item="{{item[0]}}"
+								/>
+							</view>
+						</view>
+						<view class="threeRow-left">
+							<view
+							 class="avatar-image-item"
+							 wx:for-index="twoindex"
+							 data-id="{{item[1]._id}}"
+							 data-ondeindex="{{index}}"
+							 data-twoindex="{{1}}"
+							 bindlongpress="likeImage"
+							>
+								<sticker-item
+								 data-ondeindex="{{index}}"
+								 data-twoindex="{{1}}"
+								 bind:delete='showDelete'
+								 userInfo="{{userInfo}}"
+								 type="six"
+								 data-item="{{item[1]}}"
+								 item="{{item[1]}}"
+								/>
+							</view>
+							<view
+							 class="avatar-image-item"
+							 wx:for-index="twoindex"
+							 data-id="{{item[2]._id}}"
+							 data-ondeindex="{{index}}"
+							 data-twoindex="{{2}}"
+							 bindlongpress="likeImage"
+							>
+								<sticker-item
+								 data-ondeindex="{{index}}"
+								 data-twoindex="{{2}}"
+								 bind:delete='showDelete'
+								 userInfo="{{userInfo}}"
+								 type="six"
+								 data-item="{{item[2]}}"
+								 item="{{item[2]}}"
+								/>
+							</view>
+						</view>
+
+					</block>
+				</view>
+
+				<view
+				 wx:if="{{item.length>3||item.length<3 || (item.length===3&&(index%2!==0)) }}"
+				 wx:for="{{item}}"
+				 wx:for-item="sticker"
+				 class="avatar-image-item"
+				 wx:for-index="twoindex"
+				 data-url="{{sticker.urls}}"
+				 data-id="{{sticker._id}}"
+				 data-ondeindex="{{index}}"
+				 data-twoindex="{{twoindex}}"
+				 bindlongpress="likeImage"
+				>
+					<sticker-item
+					 data-ondeindex="{{index}}"
+					 data-twoindex="{{twoindex}}"
+					 bind:delete='showDelete'
+					 userInfo="{{userInfo}}"
+					 type="six"
+					 data-item="{{sticker}}"
+					 item="{{sticker}}"
+					/>
+				</view>
+
+			</view>
+			<!-- <view
 			 class="avatar-image-item"
 			 wx:for="{{sticker}}"
 			 wx:key="index"
@@ -79,7 +228,7 @@
 					<image wx:else src="../../images/icon/like.png" />
 					<view class="like-text">{{item.favour_num>999?"999+":item.favour_num}}</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 	</l-loadmore>
 	<view class="uploader" wx:if="{{config}}" bind:tap="showRule">
@@ -160,4 +309,22 @@
 </l-popup>
 
 <l-toast/>
+
+<j-dialog
+ show="{{showDelete}}"
+ type="confirm"
+ title="是否确认删除这些图片？"
+ bind:linconfirm="delete"
+>
+	<view class="showDelete-item">
+		<image
+		 wx:for="{{deleteItem.urls}}"
+		 src="{{item.fileID}}"
+		 mode="aspectFill"
+		 data-url='{{item.fileID}}'
+		 class="showDelete-item-img"
+		 bind:tap="viewItem"
+		/>
+	</view>
+</j-dialog>
 

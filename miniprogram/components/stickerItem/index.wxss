@@ -1,0 +1,92 @@
+/* components/stickerItem/index.wxss */
+.avatar-image-item {
+  width: 245rpx;
+  height: 245rpx;
+  overflow: hidden;
+  margin: 2rpx;
+  position: relative;
+}
+
+.avatar-image {
+  width: 245rpx;
+  height: 245rpx;
+  overflow: hidden;
+  margin: 2rpx;
+}
+
+.desc {
+  text-align: center;
+  color: #666;
+  font-size: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.big-img {
+  width: 495rpx !important;
+  height: 495rpx !important;
+}
+
+.delete {
+  position: absolute;
+  top: 2rpx;
+  left: 2rpx;
+  padding: 10rpx;
+  background-color: rgba(0, 0, 0, 0.527);
+}
+
+.album {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10rpx;
+  border-bottom-left-radius: 50%;
+  background-image: linear-gradient(
+    to top right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.109),
+    rgba(0, 0, 0, 0.555)
+  );
+  /* filter: blur(20rpx) */
+}
+
+.album image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.like {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 10rpx;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(
+    to top right,
+    rgba(0, 0, 0, 0.644),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0)
+  );
+}
+.like image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.like-text {
+  text-align: center;
+  color: #fff;
+  font-size: 24rpx;
+  margin-left: 5rpx;
+}
+
+
+.deleteImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 0, 0, 0.527);
+}
+

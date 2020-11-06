@@ -14,6 +14,7 @@
     "l-tag":"/miniprogram_npm/lin-ui/tag/index",
     "l-btn":"/miniprogram_npm/lin-ui/button/index",
     "l-segment":"/miniprogram_npm/lin-ui/segment/index",
-    "l-segment-item":"/miniprogram_npm/lin-ui/segment-item/index"
+    "l-segment-item":"/miniprogram_npm/lin-ui/segment-item/index",
+    "sticker-item":"/components/stickerItem/index"
   }
 }
