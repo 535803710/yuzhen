@@ -2,12 +2,13 @@
 <view>
 	<view class="avatar">
 		<view wx:if="{{login}}" class="avatar-box">
-			<j-avatar open-data="{{['userAvatarUrl','userNickName']}}" />
+			<j-avatar placement="bottom" l-text-class="avatar-text" open-data="{{['userAvatarUrl','userNickName']}}" />
 			<!-- <l-icon name="right" size="30" /> -->
 		</view>
 		<view wx:else class="login">
 			<j-btn open-type="getUserInfo" bind:getuserinfo="getUserInfo">登录</j-btn>
 		</view>
+		<image class="my-bg" mode="widthFix" src="../../images/my_bg.jpg" />
 	</view>
 
 	<!-- <content-card name="收藏图片">
@@ -98,7 +99,13 @@
 					<view>$ 最大赞助金额为10元 $</view>
 					<view>$ 所有赞助将全部用于后期维护 $</view>
 					<view wx:if="{{config}}">
-						<image style="width:200rpx;height:200rpx" src="cloud://dev-85arv.6465-dev-85arv-1303912966/avatar/WechatIMG58.jpeg" mode="widthFix" />
+						<image
+						 bind:tap="view"
+						 data-url="{{[{fileID:'cloud://dev-85arv.6465-dev-85arv-1303912966/avatar/WechatIMG58.jpeg'}]}}"
+						 style="width:250rpx;height:250rpx"
+						 src="cloud://dev-85arv.6465-dev-85arv-1303912966/avatar/WechatIMG58.jpeg"
+						 mode="widthFix"
+						/>
 					</view>
 				</l-collapse-item>
 			</l-collapse>

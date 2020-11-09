@@ -345,17 +345,22 @@ Page({
   },
 
   showDelete(e){
+    console.log('showDelete',e);
+    const ondeindex = util.getDataSet(e, "ondeindex");
+    const twoindex = util.getDataSet(e, "twoindex");
     const item = util.getDataSet(e, "item");
     this.setData({
       showDelete:true,
-      deleteItem:item
+      deleteItem:item,
+      ondeindex,
+      twoindex
     })
   },
   async delete(e) {
     console.log(e);
-    const ondeindex = util.getDataSet(e, "ondeindex");
-    const twoindex = util.getDataSet(e, "twoindex");
-    const item = util.getDataSet(e, "item");
+    const ondeindex = this.data.ondeindex;
+    const twoindex = this.data.twoindex;
+    const item = this.data.deleteItem;
     const res = await wx.cloud.callFunction({
       name: "updateSticker",
       data: {

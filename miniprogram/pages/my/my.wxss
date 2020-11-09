@@ -1,11 +1,12 @@
 .avatar {
+  height: 292rpx;
   margin-top: 50rpx;
-  padding: 30rpx 50rpx;
+  padding: 0 30rpx 15rpx 30rpx;
   border-bottom: 1rpx solid rgb(226, 226, 226);
 }
 .avatar-box {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -122,4 +123,17 @@
     margin-left: 5rpx;
   }
   
+
+  .my-bg{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    left: -30rpx;
+    width: 780rpx;
+    height: 342rpx;
+  }
   
+  .avatar-text{
+    color: #fff !important;
+  }

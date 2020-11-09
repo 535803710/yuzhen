@@ -1,0 +1,4 @@
+/* miniprogram/pages/notice/notice.wxss */
+page{
+    background-color: #000;
+}
