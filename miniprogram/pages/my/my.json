@@ -8,6 +8,8 @@
     "l-collapse": "/miniprogram_npm/lin-ui/collapse/index",
     "l-collapse-item": "/miniprogram_npm/lin-ui/collapse-item/index",
     "l-card":"/miniprogram_npm/lin-ui/card/index",
-    "content-card":"/components/content-card/index"
+    "content-card":"/components/content-card/index",
+    "j-popup":"/miniprogram_npm/lin-ui/popup/index",
+    "l-dialog":"/miniprogram_npm/lin-ui/dialog/index"
   }
 }

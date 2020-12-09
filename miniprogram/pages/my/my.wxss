@@ -137,3 +137,15 @@
   .avatar-text{
     color: #fff !important;
   }
+
+  .showScore{
+    width: 300rpx;
+    height: 300rpx;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  .showScore image{
+    width: 200rpx;
+    height: 200rpx;
+  }

@@ -225,4 +225,11 @@ Page({
       urls,
     });
   },
+  checkScore(){
+    const userInfo = app.globalData.userInfo
+    this.setData({
+      showScore:true,
+      examination:userInfo.examination
+    })
+  }
 });

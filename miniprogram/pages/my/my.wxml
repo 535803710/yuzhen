@@ -10,13 +10,11 @@
 		</view>
 		<image class="my-bg" mode="widthFix" src="../../images/my_bg.jpg" />
 	</view>
-
 	<!-- <content-card name="收藏图片">
 		<view wx:for="{{likeImgList}}" wx:key="index">
 			<image src="{{item}}" />
 		</view>
 	</content-card> -->
-
 	<view>
 		<view class="title">
 			<image src="../../images/icon/like_fill.png" />
@@ -41,36 +39,36 @@
 				 lazy-load="{{true}}"
 				 bindload="imgLoad"
 				/>
-
 				<view wx:if="{{item.sticker[0].urls.length >1}}" class="album">
 					<image src="../../images/album.png" />
 				</view>
 				<view class="like" bind:tap="showLikeRule">
 					<image wx:if="{{item.like}}" src="../../images/icon/like_fill.png" />
 					<image wx:else src="../../images/icon/like.png" />
-					<view class="like-text">{{item.sticker[0].favour_num>999?"999+":item.sticker[0].favour_num}}</view>
+					<view class="like-text">
+						{{item.sticker[0].favour_num>999?"999+":item.sticker[0].favour_num}}
+					</view>
 				</view>
 			</view>
-			<view class="loadMore" wx:if="{{loadAll}}">{{mySticker.length>0?'已经没有更多了':'还没有贞喜欢的图片'}}</view>
+			<view class="loadMore" wx:if="{{loadAll}}">
+				{{mySticker.length>0?'已经没有更多了':'还没有贞喜欢的图片'}}
+			</view>
 			<view class="loadMore" wx:else bind:tap="getMyFavour">点击加载更多</view>
 		</view>
-
 	</view>
 	<view class="list">
-
+		<l-list title="查看入站考试分数" icon="order" bind:lintap="checkScore" />
 		<l-list
 		 title="联系作者"
 		 icon="user"
 		 right-desc="wx:xiaowo_l"
 		 is-link="{{false}}"
 		/>
-
 		<l-list title="开启上传" wx:if="{{switch}}">
 			<view slot="right-section">
 				<switch checked="{{config}}" bindchange="uploadSwitch" />
 			</view>
 		</l-list>
-
 		<view class="collapse-box">
 			<l-collapse expand-item-id='{{showCollapse}}'>
 				<l-collapse-item l-title-class="collapseTitle" title="现有功能" item-id="0">
@@ -111,6 +109,21 @@
 			</l-collapse>
 		</view>
 	</view>
-
+	<l-dialog
+	 show="{{showScore}}"
+	 type="confirm"
+	 title="入站分数"
+	 confirm-text="更多考试"
+	 bind:linconfirm="goTest"
+	>
+		<view class="showScore">
+			<view class="">你的入站考试分数为</view>
+			<view>
+				<text style="color:#f23030;font-size:32rpx">{{examination}}分</text>
+				（5分制）
+			</view>
+			<image src="cloud://dev-85arv.6465-dev-85arv-1303912966/sticker/my-image_okIoi5RIY1SbOL45hluQg21hP8kc_1604378882136" mode="widthFix" />
+		</view>
+	</l-dialog>
 </view>
 
