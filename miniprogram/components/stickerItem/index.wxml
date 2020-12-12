@@ -26,4 +26,8 @@
 	<image wx:else src="../../images/icon/like.png" />
 	<view class="like-text">{{item.favour_num>999?"999+":item.favour_num}}</view>
 </view>
+<view class="share" bind:tap="goShare">
+	<!-- <button class="share-btn" open-type="share" /> -->
+	<l-icon size="32" name="share" color="#ffffff" />
+</view>
 

@@ -166,7 +166,7 @@ Page({
     const { result } = await wx.cloud.callFunction({
       name: "getMyFavour",
       data: {
-        start: this.data.mySticker.length,
+        start: this.data.mySticker.length === 0? 0:this.data.mySticker.length+1,
       },
     });
     let mySticker = this.data.mySticker.concat(result.data);

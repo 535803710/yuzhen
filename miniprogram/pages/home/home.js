@@ -18,7 +18,7 @@ Page({
       {
         id: 0,
         text: "美丽",
-        select: false,
+        select: true,
       },
       {
         id: 1,
@@ -44,7 +44,7 @@ Page({
 
     params: {
       text: "",
-      tags: [],
+      tags: ['美丽'],
       urls: [],
     },
 
@@ -167,10 +167,21 @@ Page({
   },
 
   onShareAppMessage: function () {
+    const imageUrl =  this.data.chooseShareItem.fileID||"/images/share.jpg"
     return {
       title: "让我看看还有谁没进来",
-      imageUrl: "/images/share.jpg",
+      imageUrl:imageUrl+".jpg",
     };
+  },
+
+  setShare(e){
+    console.log('shareItem');
+    const shareItem = util.getDataSet(e, "item");
+    this.setData({
+      showShare:true,
+      shareItem,
+      chooseShareItem:shareItem.urls[0]
+    })
   },
 
   _processSticker(array, pageNum) {
@@ -555,12 +566,16 @@ Page({
     let timestamp = Date.parse(new Date());
     timestamp = timestamp / 1000;
     let random = Math.floor(Math.random() * 1000 + 1);
+    var index= filePath.lastIndexOf(".");
+    var ext ='.'+ filePath.substr(index+1);
+
     const cloudPath =
       "sticker/my-image_" +
       app.globalData.userInfo.openid +
       "_" +
       timestamp +
-      random;
+      random+
+      ext;
     console.log(cloudPath);
     const res = await wx.cloud.uploadFile({
       filePath,
@@ -720,4 +735,11 @@ Page({
       scrollTop: res.scrollTop,
     });
   },
+
+  chooseShare(e){
+    const chooseShareItem = util.getDataSet(e, "item");
+    this.setData({
+      chooseShareItem
+    })
+  }
 });

@@ -57,9 +57,12 @@
 							 bindlongpress="likeImage"
 							>
 								<sticker-item
+								 data-id="{{item[0]._id}}"
 								 data-ondeindex="{{index}}"
 								 data-twoindex="{{0}}"
 								 bind:delete='showDelete'
+								 bind:share='setShare'
+								 bind:like='likeImage'
 								 userInfo="{{userInfo}}"
 								 type="six"
 								 data-item="{{item[0]}}"
@@ -75,9 +78,12 @@
 							 bindlongpress="likeImage"
 							>
 								<sticker-item
+								 data-id="{{item[1]._id}}"
 								 data-ondeindex="{{index}}"
 								 data-twoindex="{{1}}"
 								 bind:delete='showDelete'
+								 bind:share='setShare'
+								 bind:like='likeImage'
 								 userInfo="{{userInfo}}"
 								 type="six"
 								 data-item="{{item[1]}}"
@@ -95,9 +101,12 @@
 							 bindlongpress="likeImage"
 							>
 								<sticker-item
+								 data-id="{{item[2]._id}}"
 								 data-ondeindex="{{index}}"
 								 data-twoindex="{{2}}"
 								 bind:delete='showDelete'
+								 bind:like='likeImage'
+								 bind:share='setShare'
 								 userInfo="{{userInfo}}"
 								 big="{{true}}"
 								 data-item="{{item[2]}}"
@@ -117,9 +126,12 @@
 							 bindlongpress="likeImage"
 							>
 								<sticker-item
+								 data-id="{{item[0]._id}}"
 								 data-ondeindex="{{index}}"
 								 data-twoindex="{{0}}"
 								 bind:delete='showDelete'
+								 bind:share='setShare'
+								 bind:like='likeImage'
 								 userInfo="{{userInfo}}"
 								 big="{{true}}"
 								 data-item="{{item[0]}}"
@@ -137,9 +149,12 @@
 							 bindlongpress="likeImage"
 							>
 								<sticker-item
+								 data-id="{{item[1]._id}}"
 								 data-ondeindex="{{index}}"
 								 data-twoindex="{{1}}"
 								 bind:delete='showDelete'
+								 bind:share='setShare'
+								 bind:like='likeImage'
 								 userInfo="{{userInfo}}"
 								 type="six"
 								 data-item="{{item[1]}}"
@@ -155,9 +170,12 @@
 							 bindlongpress="likeImage"
 							>
 								<sticker-item
+								 data-id="{{item[2]._id}}"
 								 data-ondeindex="{{index}}"
 								 data-twoindex="{{2}}"
 								 bind:delete='showDelete'
+								 bind:share='setShare'
+								 bind:like='likeImage'
 								 userInfo="{{userInfo}}"
 								 type="six"
 								 data-item="{{item[2]}}"
@@ -182,9 +200,12 @@
 				 bindlongpress="likeImage"
 				>
 					<sticker-item
+					 data-id="{{sticker._id}}"
 					 data-ondeindex="{{index}}"
 					 data-twoindex="{{twoindex}}"
 					 bind:delete='showDelete'
+					 bind:share='setShare'
+					 bind:like='likeImage'
 					 userInfo="{{userInfo}}"
 					 type="six"
 					 data-item="{{sticker}}"
@@ -325,6 +346,31 @@
 		 class="showDelete-item-img"
 		 bind:tap="viewItem"
 		/>
+	</view>
+</j-dialog>
+
+<j-dialog
+ show="{{showShare}}"
+ type="confirm"
+ title="选择分享的图片"
+ bind:linconfirm="onShareAppMessage"
+>
+
+	<view class="showShare-item">
+		<view>很抱歉，暂无法分享动图！</view>
+		<view>请选择静态图片分享</view>
+		<view class="showShare-item-img {{shareItem.urls.length === 1?'img-center':''}}">
+			<image
+			 wx:for="{{shareItem.urls}}"
+			 src="{{item.fileID}}"
+			 mode="aspectFill"
+			 data-url='{{item.fileID}}'
+			 data-item='{{item}}'
+			 class="showDelete-item-img {{chooseShareItem.fileID === item.fileID?'chooseOne':''}}"
+			 bind:tap="chooseShare"
+			/>
+		</view>
+		<button class="share-btn" open-type="share" />
 	</view>
 </j-dialog>
 

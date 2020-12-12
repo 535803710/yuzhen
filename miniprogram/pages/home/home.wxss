@@ -248,6 +248,36 @@
 .showDelete-item-img {
   width: 200rpx;
   height: 200rpx;
-overflow: hidden;
-margin: 10rpx;
+  overflow: hidden;
+  margin: 10rpx;
+}
+
+.showShare-item {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 520rpx;
+  justify-content: center;
+}
+
+.showShare-item-img{
+  margin: 0 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.img-center{
+  justify-content: center;
+}
+.share-btn {
+  position: absolute;
+  bottom: -100rpx;
+  right: 0;
+  width: 200rpx !important;
+  height: 80rpx;
+  background:none;
+}
+
+.chooseOne {
+  border: 6rpx solid #2c61b4;
 }

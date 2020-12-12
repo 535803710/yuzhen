@@ -1,4 +1,6 @@
+
 .avatar {
+  position: relative;
   height: 292rpx;
   margin-top: 50rpx;
   padding: 0 30rpx 15rpx 30rpx;
@@ -127,7 +129,7 @@
   .my-bg{
     position: absolute;
     z-index: -1;
-    top: 0;
+    top: -50rpx;
     right: 0;
     left: -30rpx;
     width: 780rpx;

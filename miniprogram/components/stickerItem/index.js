@@ -26,7 +26,10 @@ Component({
         return;
       }
       const url = util.getDataSet(e, "url");
-      console.log(url);
+      const id = util.getDataSet(e, "id");
+
+      console.log(e);
+      console.log('getDataSet',id);
       let urls = [];
       url.forEach((el) => {
         urls.push(el.fileID);
@@ -35,6 +38,10 @@ Component({
         current: 0,
         urls,
       });
+      // wx.navigateTo({
+      //   url: `/pages/detail/detail?id=${id}`,
+      // });
+
     },
     _checkUserInfo() {
       if (Object.keys(this.data.userInfo).indexOf("nickName") === -1) {
@@ -55,16 +62,15 @@ Component({
     },
 
     showLikeRule() {
-      wx.showToast({
-        title: "长按图片点赞或取消",
-        icon: "none",
-        duration: 2000,
-        mask: false,
-      });
+      this.triggerEvent('like')
     },
 
     delete(){
       this.triggerEvent('delete')
+    },
+
+    goShare(){
+      this.triggerEvent('share')
     }
 
   

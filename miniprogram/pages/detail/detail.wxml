@@ -1,0 +1,11 @@
+<!--miniprogram/pages/detail/detail.wxml-->
+<view>
+	<swiper autoplay="{{true}}" indicator-dots="{{true}}" circular>
+		<block wx:for="{{}}">
+			<swiper-item>
+				<image src="{{item.fileID}}" mode="widthFix" />
+			</swiper-item>
+		</block>
+	</swiper>
+</view>
+
